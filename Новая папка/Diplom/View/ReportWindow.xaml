@@ -1,0 +1,879 @@
+﻿<Window x:Class="Diplom.View.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom.View"
+        mc:Ignorable="d"
+        Title="ReportWindow" Height="650" Width="1050"
+         Icon="{StaticResource Icon}"
+         AllowsTransparency="True" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+       Background="Transparent">
+    <Border
+        Width="Auto" Height="Auto" Name="windowFrame"
+    Background="{StaticResource BackgroundLight}"
+          BorderBrush="#395984"
+          BorderThickness="1"
+          CornerRadius="20,20,30,40">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="322*" />
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle1}" Margin="2,-3,6,-3"
+                        x:Name="ExitButton" Click="ExitButton_Click"/>
+                <Button Content="_" Style="{StaticResource ButtonStyle1}" Margin="908,0,3,0"
+                        x:Name="MinButton" Click="MinButton_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <TabControl Background="Transparent">
+
+                    <TabItem Header="Продажи товара" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <Border Grid.Row="0"
+                                    Background="{StaticResource BackgroundDark}"
+                                    CornerRadius="15">
+                                <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="96*"/>
+                                    <ColumnDefinition Width="87*"/>
+                                    <ColumnDefinition Width="92*"/>
+                                    <ColumnDefinition Width="98*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox   Grid.Column="0" Width="180"  Style="{StaticResource SearchTextBox}"
+                                 Text="{Binding SearchSaleProductValue,UpdateSourceTrigger=PropertyChanged}"
+                                      Margin="5,5,3,5"/>
+                                <ComboBox Height="24"
+                                    Width="150"
+                                Grid.Column="1"
+                                  ItemsSource="{Binding ProductSorts,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedProductSort,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                                <ComboBox Height="Auto"
+                                    Width="180"
+                            Grid.Column="2"
+                                  ItemsSource="{Binding ProductFilthers,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedProductFilther,UpdateSourceTrigger=PropertyChanged}"
+                                      Margin="0,8,0,8"/>
+                                <ComboBox Height="Auto"
+                                    Width="180"
+                            Grid.Column="3"
+                                  ItemsSource="{Binding ProductFilthersTtile,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedProductFiltherTitle,UpdateSourceTrigger=PropertyChanged}"
+                                      Margin="0,8,0,8"/>
+
+
+                        </Grid>
+                     </Border>
+    <ListView Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding SaleProducts,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedSaleProduct,UpdateSourceTrigger=PropertyChanged}"
+                          BorderThickness="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border  Background="{StaticResource BackgroundWhite}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        CornerRadius="10"
+                                        Margin="10"
+                                        x:Name="Border"
+                                            >
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="12"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="12"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Grid.Column="0" Background="{StaticResource ButtonColor}" CornerRadius="10,0,0,10"
+                                                x:Name="SideBorder1"/>
+                                                            <StackPanel Grid.Column="1"
+                                                    Margin="5">
+                                                                <TextBlock Text="{Binding Article,UpdateSourceTrigger=PropertyChanged}"
+                                                        FontWeight="Bold"
+                                                       FontSize="16"
+                                                       />
+                                                                <TextBlock Text="{Binding DateOfSale, StringFormat=Дата-Продажи: {0},UpdateSourceTrigger=PropertyChanged}"
+                                                      />
+                                                                <TextBlock Text="{Binding Organization.Title , StringFormat=Ораганизация {0},UpdateSourceTrigger=PropertyChanged}"
+                                                      />
+                                                                <StackPanel Orientation="Horizontal" Margin="2">
+                                                                    <TextBlock Text="{Binding Product.Title , StringFormat=Продукт: {0},UpdateSourceTrigger=PropertyChanged}"
+                                                      />
+                                                                    <TextBlock Text="{Binding Product.Categorie.Title,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 0 0 "/>
+                                                                    <TextBlock Text=" Гарантия: "/>
+                                                                    <TextBlock Text="{Binding Product.Guarantee,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 0 0 "/>
+                                                                </StackPanel>
+                                                                <TextBlock Text="Цена:"
+                                                       FontSize="14"
+                                                      />
+                                                                <TextBlock Text="{Binding Product.CorrectCost, UpdateSourceTrigger=PropertyChanged, ConverterCulture=ru-RU, StringFormat={}{0:c}}"
+                                                       FontSize="14"/>
+                                                                <TextBlock x:Name="TextBlock1"
+                                                       Text="{Binding Product.Cost, UpdateSourceTrigger=PropertyChanged, ConverterCulture=ru-RU, StringFormat={}{0:c}}"
+                                                       TextDecorations="Strikethrough"
+                                                       Visibility="Collapsed"/>
+                                                                <TextBlock x:Name="TextBlock2"
+                                                       Text="{Binding Product.CorrectDiscount,StringFormat=Скидка: {0}%}"
+                                                       Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Еmployees.FullName, StringFormat=Сотрудник: {0},UpdateSourceTrigger=PropertyChanged}"
+                                                       />
+
+                                                            </StackPanel>
+                                                            <Border Grid.Column="4" Background="{StaticResource ButtonColor}" CornerRadius="0,10,10,0"
+                                                x:Name="SideBorder2"/>
+                                                        </Grid>
+
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+                                                        <DataTrigger Binding="{Binding Product.IsDiscount}" Value="true">
+                                                            <Setter TargetName="TextBlock1" Property="Visibility" Value="Visible"/>
+                                                            <Setter TargetName="TextBlock2" Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border Grid.Column="1" Grid.Row="1"
+                               Background="{StaticResource BackgroundDark}"
+                            CornerRadius="30" Margin="0,0,0,109">
+                                <StackPanel 
+                            VerticalAlignment="Center"
+                            Margin="10">
+                                    <TextBlock Text="Article"/>
+                                    <TextBox Text="{Binding ArticleProduct,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="DateOfSale"/>
+                                    <DatePicker SelectedDate="{Binding DateOfSaleProduct, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Organization"/>
+                                    <ComboBox Height="25"
+                                    Width="280"
+                            ItemsSource="{Binding OrganizationsSaleService,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedorganizationSaleProduct,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Title"/>
+                                    <TextBlock Text="Product"/>
+                                    <ComboBox Height="25"
+                                    Width="280"
+                            ItemsSource="{Binding ProductsSaleProduct,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedProductSaleProduct,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Title" />
+                                    <TextBlock Text="Income"/>
+                                    <TextBox Text="{Binding SelectedProductSaleProduct.Cost,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Profit"/>
+                                    <TextBox Text="{Binding Profit,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Empolee"/>
+                                    <ComboBox Height="25"
+                                    Width="280"
+                            ItemsSource="{Binding EmployeesList,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedEmployees,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="FullName"/>
+                                    <Button Style="{StaticResource ButtonStyle1}"  x:Name="AddPracticeButton"
+                            Content="Добавить продажу товара"
+                            Command="{Binding AddSaleProductbutton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,10,0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}"  x:Name="UpdatePracticeButton"
+                            Content="Обновить"
+                          Command="{Binding UpdateSaleProductButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}"  x:Name="RemovePracticeButton"
+                            Content="Удалить"
+                            Command="{Binding DeleteSaleProductButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}"  Grid.Column="0" Margin="100 0 100 10"
+                                Content="Print"
+                                Command="{Binding OpenPdfWindowButton,UpdateSourceTrigger=PropertyChanged}" Height="21" Width="78"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                    </TabItem>
+                    <TabItem Header="Продажи услуг">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".4*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox  Style="{StaticResource SearchTextBox}"
+                            Text="{Binding SearchServiceValue ,UpdateSourceTrigger=PropertyChanged}" Margin="5" Grid.Column="0" Width="180"/>
+                            </Grid>
+                            <ListView Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding SaleService,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedSaleService,UpdateSourceTrigger=PropertyChanged}"
+                          BorderThickness="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border  Background="{StaticResource BackgroundWhite}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        CornerRadius="10"
+                                        Margin="10"
+                                        x:Name="Border"
+                                            >
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="12"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="12"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Grid.Column="0" Background="{StaticResource ButtonColor}" CornerRadius="10,0,0,10"
+                                                x:Name="SideBorder1"/>
+                                                            <StackPanel Grid.Column="1"
+                                                    Margin="5">
+                                                                <TextBlock Text="{Binding Article,UpdateSourceTrigger=PropertyChanged}"
+                                                        FontWeight="Bold"
+                                                       FontSize="16"
+                                                       />
+                                                                <TextBlock Text="{Binding DateOfSale, StringFormat=Дата-Продажи: {0},UpdateSourceTrigger=PropertyChanged}"
+                                                      />
+                                                                <TextBlock Text="{Binding Organization.Title , StringFormat=Ораганизация {0},UpdateSourceTrigger=PropertyChanged}"
+                                                      />
+                                                                <TextBlock Text="{Binding Service.Title , StringFormat=Продукт: {0},UpdateSourceTrigger=PropertyChanged}"
+                                                      />
+                                                                <TextBlock Text="Цена:"
+                                                       FontSize="14"
+                                                      />
+                                                                <TextBlock Text="{Binding Service.CostPerHour, UpdateSourceTrigger=PropertyChanged, ConverterCulture=ru-RU, StringFormat={}{0:c}}"
+                                                       FontSize="14"/>
+
+
+                                                                <TextBlock Text="{Binding Еmployees.FullName, StringFormat=Сотрудник: {0},UpdateSourceTrigger=PropertyChanged}"
+                                                       />
+
+                                                            </StackPanel>
+                                                            <Border Grid.Column="4" Background="{StaticResource ButtonColor}" CornerRadius="0,10,10,0"
+                                                x:Name="SideBorder2"/>
+                                                        </Grid>
+
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border Grid.Column="1" Grid.Row="1"
+                               Background="{StaticResource BackgroundDark}"
+                            CornerRadius="30" Margin="0,0,0,109">
+                                <StackPanel 
+                            VerticalAlignment="Center"
+                            Margin="10">
+                                    <TextBlock Text="Article"/>
+                                    <TextBox Text="{Binding ArticleService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="DateOfSale"/>
+                                    <DatePicker SelectedDate="{Binding DateOfSaleService, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Organization"/>
+                                    <ComboBox Height="25"
+                                    Width="280"
+                            ItemsSource="{Binding OrganizationsSaleService,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedorganizationSaleService,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Title"/>
+                                    <TextBlock Text="Service"/>
+                                    <ComboBox  Height="25"
+                                    Width="280"
+                            ItemsSource="{Binding ServiceSaleService,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedServiceSale,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Title" />
+                                    <TextBlock Text="Income"/>
+                                    <TextBox Text="{Binding SelectedServiceSale.CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Profit"/>
+                                    <TextBox Text="{Binding ProfitService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Empolee"/>
+                                    <ComboBox Height="25"
+                                  Width="280"
+                            ItemsSource="{Binding EmployeesListService,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedEmployeesService,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="FullName"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Добавить продажу товара"
+                          Command="{Binding AddSaleServicebutton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,10,0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Обновить"
+                         Command="{Binding UpdateSaleServiceButton ,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Удалить"
+                            Command="{Binding DeleteSaleServiceButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}"  Grid.Column="0" Margin="100 0 100 10"
+                                Content="Print"
+                                Command="{Binding OpenPdfServiceWindowButton,UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Организации">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Organizations,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedOrganization,UpdateSourceTrigger=PropertyChanged}"
+                          BorderThickness="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border  Background="{StaticResource BackgroundWhite}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        CornerRadius="10"
+                                        Margin="10"
+                                        x:Name="Border"
+                                            >
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="12"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="12"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Grid.Column="0" Background="{StaticResource ButtonColor}" CornerRadius="10,0,0,10"
+                                                x:Name="SideBorder1"/>
+                                                            <StackPanel Grid.Column="1"
+                                                    Margin="5">
+                                                                <TextBlock Text="{Binding Title}"  
+                                                       FontWeight="Bold"
+                                                       FontSize="16"
+                                                      
+                                                       />
+                                                                <TextBlock Text="{Binding LegalAddress , StringFormat=Адрес-Организации: {0}}"
+                                                      />
+                                                                <TextBlock Text="{Binding INN , StringFormat=ИНН {0}}"
+                                                      />
+                                                                <TextBlock Text="{Binding KPP , StringFormat=КПП: {0}}"
+                                                      />
+                                                                <TextBlock Text="{Binding Owner , StringFormat=ФИЗ-Лицо: {0}}"
+                                                       />
+                                                                <TextBlock Text="{Binding MailingAddress, StringFormat=Майл-Адресс: {0}}"
+                                                       />
+                                                                <TextBlock Text="{Binding NumberPhone, StringFormat=Номер-Организации: {0}}"
+                                                      />
+                                                                <TextBlock Text="{Binding BankAccountNumber, StringFormat=Банковский-Счет: {0}}"
+                                                       />
+                                                                <TextBlock Text="{Binding OGRN, StringFormat=ОГРН: {0}}"
+                                                       />
+                                                                <TextBlock Text="{Binding OKATO, StringFormat=ОКАТО: {0}}"
+                                                      />
+                                                                <TextBlock Text="{Binding OKPO, StringFormat=ОКПО: {0}}"
+                                                      />
+
+                                                            </StackPanel>
+                                                            <Border Grid.Column="4" Background="{StaticResource ButtonColor}" CornerRadius="0,10,10,0"
+                                                x:Name="SideBorder2"/>
+                                                        </Grid>
+
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border Grid.Column="1" Grid.Row="1"
+                               Background="{StaticResource BackgroundDark}"
+                            CornerRadius="30" Margin="0,0,0,83">
+                                <StackPanel 
+                            VerticalAlignment="Center"
+                            Margin="10">
+                                    <TextBlock Text="Title"/>
+                                    <TextBox Text="{Binding TitleOrganization,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="LegalAdress"/>
+                                    <TextBox Text="{Binding LegalAdress,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="INN"/>
+                                    <TextBox Text="{Binding Inn,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="KPP"/>
+                                    <TextBox Text="{Binding Kpp,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Owner"/>
+                                    <TextBox Text="{Binding Owner,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="MailAdress"/>
+                                    <TextBox Text="{Binding MailAdress,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="NumperPhone"/>
+                                    <TextBox Text="{Binding NumberPhone,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="BankAccountNumber"/>
+                                    <TextBox Text="{Binding BankAccountNumber,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="OGRN"/>
+                                    <TextBox Text="{Binding Ogrn,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="OKTA"/>
+                                    <TextBox Text="{Binding Okta,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="OKPO"/>
+                                    <TextBox Text="{Binding Okpo,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Добавить продажу товара"
+                           Command="{Binding AddOrganizationsbutton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,10,0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Обновить"
+                     Command="{Binding UpdateOrganizationsButton,UpdateSourceTrigger=PropertyChanged}"
+                            
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Удалить"
+                           Command="{Binding DeleteOrganizationsButton,UpdateSourceTrigger=PropertyChanged}"
+                            
+                            Margin="0,4"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Товары">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Products,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelecteProduct,UpdateSourceTrigger=PropertyChanged}"
+                          BorderThickness="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border Margin="10"
+                                        Background="{StaticResource BackgroundWhite}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        CornerRadius="10"
+                                                    x:Name="Border">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="12"/>
+                                                                <ColumnDefinition Width="120"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="12"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Grid.Column="0" Background="{StaticResource ButtonColor}" CornerRadius="10,0,0,10"
+                                                x:Name="SideBorder1"/>
+                                                            <Image Source="{Binding PictureProduct.CorrectPicturePath, UpdateSourceTrigger=PropertyChanged}"
+                                               Height="100"
+                                               Width="100"
+                                               Stretch="Uniform"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Grid.Column="1"
+                                               Margin="5"/>
+                                                            <StackPanel Grid.Column="2"
+                                                    Margin="5">
+                                                                <StackPanel Orientation="Vertical">
+                                                                    <TextBlock Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                                                       FontWeight="Bold"
+                                                       FontSize="16"/>
+                                                                </StackPanel>
+                                                                <TextBlock Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+                                                      TextWrapping="Wrap"
+                                                       FontWeight="Medium"/>
+                                                                <TextBlock Text="{Binding Guarantee,UpdateSourceTrigger=PropertyChanged, StringFormat=Гарантия: {0}}"
+                                                       FontSize="14"
+                                                      />
+                                                                <TextBlock Text="Цена:"
+                                                       FontSize="14"
+                                                      />
+                                                                <TextBlock Text="{Binding CorrectCost, UpdateSourceTrigger=PropertyChanged, ConverterCulture=ru-RU, StringFormat={}{0:c}}"
+                                                       FontSize="14"/>
+                                                                <TextBlock x:Name="TextBlock1"
+                                                       Text="{Binding Cost, UpdateSourceTrigger=PropertyChanged, ConverterCulture=ru-RU, StringFormat={}{0:c}}"
+                                                       TextDecorations="Strikethrough"
+                                                       Visibility="Collapsed"/>
+                                                                <TextBlock x:Name="TextBlock2"
+                                                       Text="{Binding CorrectDiscount,StringFormat=Скидка: {0}%}"
+                                                       Visibility="Collapsed"/>
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="3"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    Margin="5">
+
+
+                                                            </StackPanel>
+                                                            <Border Grid.Column="4" Background="{StaticResource ButtonColor}" CornerRadius="0,10,10,0"
+                                                x:Name="SideBorder2"/>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+                                                        <DataTrigger Binding="{Binding IsDiscount}" Value="true">
+                                                            <Setter TargetName="TextBlock1" Property="Visibility" Value="Visible"/>
+                                                            <Setter TargetName="TextBlock2" Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border Grid.Column="1" Grid.Row="1"
+                               Background="{StaticResource BackgroundDark}"
+                            CornerRadius="30" Margin="0,0,0,176">
+                                <StackPanel 
+                            VerticalAlignment="Center"
+                            Margin="10">
+                                    <TextBlock Text="Title"/>
+                                    <TextBox Text="{Binding TitleProduct,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Description"/>
+                                    <TextBox Text="{Binding DescriptionProduct,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Picture"/>
+                                    <ComboBox Height="25"
+                                  Width="280"
+                            ItemsSource="{Binding PictureProduct,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedPictureProduct,UpdateSourceTrigger=PropertyChanged}"
+                                DisplayMemberPath="Picture">
+                                    </ComboBox>
+                                    <TextBlock Text="Cost"/>
+                                    <TextBox Text="{Binding Cost,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Guarante"/>
+                                    <TextBox Text="{Binding Guarantee,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Discount"/>
+                                    <TextBox Text="{Binding Discount,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Categorie"/>
+                                    <ComboBox  Height="25" Width="280"
+                            ItemsSource="{Binding Categorie,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedCategories,UpdateSourceTrigger=PropertyChanged}"
+                                  DisplayMemberPath="Title"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Добавить товара"
+                            Command="{Binding AddProductbutton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,10,0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Обновить"
+                     Command="{Binding UpdateProductButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Удалить"
+                            Command="{Binding DeleteProductButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Услуги">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Services,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedService,UpdateSourceTrigger=PropertyChanged}"
+                          BorderThickness="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border Margin="10"
+                                        Background="{StaticResource BackgroundWhite}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        CornerRadius="10"
+                                                    x:Name="Border">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="12"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="12"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Grid.Column="0" Background="{StaticResource ButtonColor}" CornerRadius="10,0,0,10"
+                                                x:Name="SideBorder1"/>
+                                                            <StackPanel Grid.Column="1"
+                                                    Margin="5">
+                                                                <StackPanel Orientation="Vertical">
+                                                                    <TextBlock Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                                                       FontWeight="Bold"
+                                                       FontSize="16"/>
+                                                                </StackPanel>
+                                                                <TextBlock Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+                                                      TextWrapping="Wrap"
+                                                       FontWeight="Medium"/>
+                                                                <TextBlock Text="Цена:"
+                                                       FontSize="14"
+                                                      />
+                                                                <TextBlock Text="{Binding CostPerHour, UpdateSourceTrigger=PropertyChanged, ConverterCulture=ru-RU, StringFormat={}{0:c}}"
+                                                       FontSize="14"/>
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="3"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    Margin="5">
+
+
+                                                            </StackPanel>
+                                                            <Border Grid.Column="4" Background="{StaticResource ButtonColor}" CornerRadius="0,10,10,0"
+                                                x:Name="SideBorder2"/>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border Grid.Column="1" Grid.Row="1"
+                               Background="{StaticResource BackgroundDark}"
+                            CornerRadius="30" Margin="0,103,0,216">
+                                <StackPanel
+                            VerticalAlignment="Center"
+                            Margin="10">
+                                    <TextBlock Text="Title"/>
+                                    <TextBox Text="{Binding TitleService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Description"/>
+                                    <TextBox Text="{Binding DescriptionService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="CostPerHour"/>
+                                    <TextBox Text="{Binding CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Добавить услугу"
+                           Command="{Binding AddServicebutton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,10,0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Обновить"
+                      Command="{Binding UpdateServiceButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Удалить"
+                          Command="{Binding DeleteServiceButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Категории">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Categorie,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedCategorieTitle,UpdateSourceTrigger=PropertyChanged}"
+                          BorderThickness="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border Margin="10"
+                                        Background="{StaticResource BackgroundWhite}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        CornerRadius="10"
+                                                    x:Name="Border">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="12"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="12"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Grid.Column="0" Background="{StaticResource ButtonColor}" CornerRadius="10,0,0,10"
+                                                x:Name="SideBorder1"/>
+                                                            <StackPanel Grid.Column="1"
+                                                    Margin="5">
+                                                                <StackPanel Orientation="Vertical">
+                                                                    <TextBlock Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                                                       FontWeight="Bold"
+                                                       FontSize="16"/>
+                                                                </StackPanel>
+
+                                                            </StackPanel>
+                                                            <Border Grid.Column="4" Background="{StaticResource ButtonColor}" CornerRadius="0,10,10,0"
+                                                x:Name="SideBorder2"/>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorMouseOver}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="SideBorder1" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                            <Setter TargetName="SideBorder2" Property="Background" Value="{StaticResource ButtonColorPressed}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border Grid.Column="1" Grid.Row="1"
+                               Background="{StaticResource BackgroundDark}"
+                            CornerRadius="30" Margin="0,158,0,222">
+                                <StackPanel Grid.Column="1" Grid.Row="1"
+                            VerticalAlignment="Center"
+                            Margin="10">
+                                    <TextBlock Text="Title"/>
+                                    <TextBox Text="{Binding CategorieTitle,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Добавить услугу"
+                           Command="{Binding AddCategoriebutton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,10,0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Обновить"
+                      Command="{Binding UpdateCategorieButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                            Content="Удалить"
+                          Command="{Binding DeleteCategorieButton,UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,4"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
