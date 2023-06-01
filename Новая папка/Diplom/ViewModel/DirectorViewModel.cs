@@ -104,14 +104,22 @@ namespace Diplom.ViewModel
 
         public void DeleteUser()
         {
+            
             if (!SelectedProductIsNull())
             {
                 var result = MessageBox.Show("Вы уверены что хотите удалить?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    _userService.Delete(SelectedUser);
-                    UpdateLists();
+                    if (SelectedUser != User)
+                    {
+                        _userService.Delete(SelectedUser);
+                        UpdateLists();
+                    }
+                    else
+                        MessageBox.Show($"Вы не можете удалить себя!",
+                                     "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+          
             }
             else
                 MessageBox.Show("Выберите пользователя", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
