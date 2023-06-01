@@ -5,32 +5,35 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    
-    <Style TargetType="TabItem">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource ButtonColor}"/>
-        <Setter Property="Width" Value="auto"/>
-        <Setter Property="Opacity" Value="0.7"/>
-        <Setter Property="FontSize" Value="12"/>
+
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDark}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SecondColor}"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="TabItem">
-                    <Border Name="Border" Margin="5,0,5,2"
-                                CornerRadius="4">
-                        <ContentPresenter  VerticalAlignment="Center" Margin="3"
-                                               HorizontalAlignment="Center"
-                                               ContentSource="Header"/>
+                <ControlTemplate
+                    TargetType="{x:Type TabItem}">
+                    <Border 
+                        x:Name="PART_Border"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="3" 
+                        BorderBrush="{StaticResource SecondColor}" 
+                        CornerRadius="15"
+                        Margin="5">
+                        <ContentPresenter 
+                            ContentSource="Header"
+                            Margin="10"/>
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Opacity" Value="1"/>
-            </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Opacity" Value="1"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

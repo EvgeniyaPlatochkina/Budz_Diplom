@@ -33,10 +33,29 @@ namespace Diplom.ViewModel
         private string _login;
         private string _password;
 
-        public string Login { get => _login; set => Set(ref _login, value, nameof(Login)); }
-        public string Password { get => _password; set => Set(ref _password, value, nameof(Password)); }
+        public string Login { get => _login; set => Set(ref _login, FirstLetterToUpper(value), nameof(Login)); }
+        public string Password { get => _password; set => Set(ref _password, FirstLetterToUpper(value), nameof(Password)); }
         #endregion
         #region Methods
+        private string FirstLetterToUpper(string value)
+        {
+            var newString = new StringBuilder();
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value[0] != value.ToUpper()[0])
+                {
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        if (i == 0)
+                            newString.Append(value.ToUpper()[i]);
+                        else
+                            newString.Append(value[i]);
+                    }
+                    value = newString.ToString();
+                }
+            }
+            return value;
+        }
         private bool UserIsExits()
         {
             var isExist = false;

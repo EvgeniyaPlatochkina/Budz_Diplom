@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diplom.View"
         mc:Ignorable="d"
-        Title="ReportWindow" Height="650" Width="1050"
+        Title="ReportWindow" Height="670" Width="1050"
          Icon="{StaticResource Icon}"
          AllowsTransparency="True" 
         WindowStyle="None"
+         FontFamily="Lucida Console"
         WindowStartupLocation="CenterScreen"
+     
        Background="Transparent">
     <Border
         Width="Auto" Height="Auto" Name="windowFrame"
@@ -27,9 +29,9 @@
                     <ColumnDefinition Width="322*" />
                     <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle1}" Margin="2,-3,6,-3"
+                <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle3}" Margin="2,-3,6,-3"
                         x:Name="ExitButton" Click="ExitButton_Click"/>
-                <Button Content="_" Style="{StaticResource ButtonStyle1}" Margin="908,0,3,0"
+                <Button Content="_" Style="{StaticResource ButtonStyle3}" Margin="908,0,3,0"
                         x:Name="MinButton" Click="MinButton_Click"/>
             </Grid>
 
@@ -48,33 +50,33 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            
+
                             <Border Grid.Row="0"
                                     Background="{StaticResource BackgroundDark}"
                                     CornerRadius="15">
                                 <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="96*"/>
-                                    <ColumnDefinition Width="87*"/>
-                                    <ColumnDefinition Width="92*"/>
-                                    <ColumnDefinition Width="98*"/>
-                                </Grid.ColumnDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="96*"/>
+                                        <ColumnDefinition Width="87*"/>
+                                        <ColumnDefinition Width="92*"/>
+                                        <ColumnDefinition Width="98*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBox   Grid.Column="0" Width="180"  Style="{StaticResource SearchTextBox}"
+                                    <TextBox   Grid.Column="0" Width="180"  Style="{StaticResource SearchTextBox}"
                                  Text="{Binding SearchSaleProductValue,UpdateSourceTrigger=PropertyChanged}"
                                       Margin="5,5,3,5"/>
-                                <ComboBox Height="24"
+                                    <ComboBox Height="24"
                                     Width="150"
                                 Grid.Column="1"
                                   ItemsSource="{Binding ProductSorts,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedProductSort,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                                <ComboBox Height="Auto"
+                                    <ComboBox Height="Auto"
                                     Width="180"
                             Grid.Column="2"
                                   ItemsSource="{Binding ProductFilthers,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedProductFilther,UpdateSourceTrigger=PropertyChanged}"
                                       Margin="0,8,0,8"/>
-                                <ComboBox Height="Auto"
+                                    <ComboBox Height="Auto"
                                     Width="180"
                             Grid.Column="3"
                                   ItemsSource="{Binding ProductFilthersTtile,UpdateSourceTrigger=PropertyChanged}"
@@ -82,9 +84,9 @@
                                       Margin="0,8,0,8"/>
 
 
-                        </Grid>
-                     </Border>
-    <ListView Grid.Column="0" Grid.Row="1"
+                                </Grid>
+                            </Border>
+                            <ListView Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding SaleProducts,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedSaleProduct,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
@@ -176,37 +178,43 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,109">
+                            CornerRadius="30" Margin="0,0,0,82">
                                 <StackPanel 
+                                    
                             VerticalAlignment="Center"
-                            Margin="10">
-                                    <TextBlock Text="Article"/>
-                                    <TextBox Text="{Binding ArticleProduct,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="DateOfSale"/>
+                            Margin="10,0,10,0" Height="434">
+                                    <TextBlock Text="Артикул"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding ArticleProduct,UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Text="Дата продажи"/>
                                     <DatePicker SelectedDate="{Binding DateOfSaleProduct, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Organization"/>
+                                    <TextBlock Text="Организация"/>
                                     <ComboBox Height="25"
                                     Width="280"
                             ItemsSource="{Binding OrganizationsSaleService,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedorganizationSaleProduct,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title"/>
-                                    <TextBlock Text="Product"/>
+                                    <TextBlock Text="Продукт"/>
                                     <ComboBox Height="25"
                                     Width="280"
                             ItemsSource="{Binding ProductsSaleProduct,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedProductSaleProduct,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title" />
-                                    <TextBlock Text="Income"/>
-                                    <TextBox Text="{Binding SelectedProductSaleProduct.Cost,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Profit"/>
-                                    <TextBox Text="{Binding Profit,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Empolee"/>
+                                    <TextBlock Text="Доходы"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding SelectedProductSaleProduct.Cost,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Прибыль"/>
+                                    <TextBox   Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Profit,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Сотрудник"/>
                                     <ComboBox Height="25"
                                     Width="280"
                             ItemsSource="{Binding EmployeesList,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedEmployees,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="FullName"/>
-                                    <Button Style="{StaticResource ButtonStyle1}"  x:Name="AddPracticeButton"
+                                    <Button Style="{StaticResource ButtonStyle1}" 
+                                            
+                                            x:Name="AddPracticeButton"
                             Content="Добавить продажу товара"
                             Command="{Binding AddSaleProductbutton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,10,0,4"/>
@@ -218,9 +226,9 @@
                             Content="Удалить"
                             Command="{Binding DeleteSaleProductButton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,4"/>
-                                    <Button Style="{StaticResource ButtonStyle1}"  Grid.Column="0" Margin="100 0 100 10"
-                                Content="Print"
-                                Command="{Binding OpenPdfWindowButton,UpdateSourceTrigger=PropertyChanged}" Height="21" Width="78"/>
+                                    <Button Style="{StaticResource ButtonStyle1}"  Grid.Column="0" Margin="10 0 10 10"
+                                Content="Печать"
+                                Command="{Binding OpenPdfWindowButton,UpdateSourceTrigger=PropertyChanged}" Height="32" Width="174"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
@@ -326,31 +334,34 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,109">
+                            CornerRadius="30" Margin="0,0,0,90">
                                 <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
-                                    <TextBlock Text="Article"/>
-                                    <TextBox Text="{Binding ArticleService,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="DateOfSale"/>
+                                    <TextBlock Text="Артикул"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding ArticleService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Дата продажи"/>
                                     <DatePicker SelectedDate="{Binding DateOfSaleService, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Organization"/>
+                                    <TextBlock Text="Организация"/>
                                     <ComboBox Height="25"
                                     Width="280"
                             ItemsSource="{Binding OrganizationsSaleService,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedorganizationSaleService,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title"/>
-                                    <TextBlock Text="Service"/>
+                                    <TextBlock Text="Услуга"/>
                                     <ComboBox  Height="25"
                                     Width="280"
                             ItemsSource="{Binding ServiceSaleService,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedServiceSale,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title" />
-                                    <TextBlock Text="Income"/>
-                                    <TextBox Text="{Binding SelectedServiceSale.CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Profit"/>
-                                    <TextBox Text="{Binding ProfitService,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Empolee"/>
+                                    <TextBlock Text="Доходы"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding SelectedServiceSale.CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Прибыль"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding ProfitService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Сотрудник"/>
                                     <ComboBox Height="25"
                                   Width="280"
                             ItemsSource="{Binding EmployeesListService,UpdateSourceTrigger=PropertyChanged}"
@@ -369,7 +380,7 @@
                             Command="{Binding DeleteSaleServiceButton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,4"/>
                                     <Button Style="{StaticResource ButtonStyle1}"  Grid.Column="0" Margin="100 0 100 10"
-                                Content="Print"
+                                Content="Печать"
                                 Command="{Binding OpenPdfServiceWindowButton,UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                             </Border>
@@ -469,32 +480,43 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,83">
+                            CornerRadius="30" Margin="0,0,0,10">
                                 <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
-                                    <TextBlock Text="Title"/>
-                                    <TextBox Text="{Binding TitleOrganization,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="LegalAdress"/>
-                                    <TextBox Text="{Binding LegalAdress,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="INN"/>
-                                    <TextBox Text="{Binding Inn,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="KPP"/>
-                                    <TextBox Text="{Binding Kpp,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Owner"/>
-                                    <TextBox Text="{Binding Owner,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="MailAdress"/>
-                                    <TextBox Text="{Binding MailAdress,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="NumperPhone"/>
-                                    <TextBox Text="{Binding NumberPhone,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="BankAccountNumber"/>
-                                    <TextBox Text="{Binding BankAccountNumber,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="OGRN"/>
-                                    <TextBox Text="{Binding Ogrn,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="OKTA"/>
-                                    <TextBox Text="{Binding Okta,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="OKPO"/>
-                                    <TextBox Text="{Binding Okpo,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Название"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding TitleOrganization,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Адресс"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding LegalAdress,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="ИНН"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Inn,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="КПП"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Kpp,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="ФИЗ-Лицо"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Owner,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Электронный Адрес"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding MailAdress,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Номер телефона"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding NumberPhone,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Банковский счет"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding BankAccountNumber,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="ОГРН"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Ogrn,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="ОКТА"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Okta,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="ОКПО"/>
+                                    <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Okpo,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
                             Content="Добавить продажу товара"
                            Command="{Binding AddOrganizationsbutton,UpdateSourceTrigger=PropertyChanged}"
@@ -622,28 +644,33 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,176">
+                            CornerRadius="30" Margin="0,0,0,74">
                                 <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
-                                    <TextBlock Text="Title"/>
-                                    <TextBox Text="{Binding TitleProduct,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Description"/>
-                                    <TextBox Text="{Binding DescriptionProduct,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Picture"/>
+                                    <TextBlock Text="Название"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding TitleProduct,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Описание"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding DescriptionProduct,UpdateSourceTrigger=PropertyChanged}"  Height="80"/>
+                                    <TextBlock Text="Картинка"/>
                                     <ComboBox Height="25"
                                   Width="280"
                             ItemsSource="{Binding PictureProduct,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedPictureProduct,UpdateSourceTrigger=PropertyChanged}"
                                 DisplayMemberPath="Picture">
                                     </ComboBox>
-                                    <TextBlock Text="Cost"/>
-                                    <TextBox Text="{Binding Cost,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Guarante"/>
-                                    <TextBox Text="{Binding Guarantee,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Discount"/>
-                                    <TextBox Text="{Binding Discount,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Categorie"/>
+                                    <TextBlock Text="Цена"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Cost,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Гарантия"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Guarantee,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Скидка"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding Discount,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Категория"/>
                                     <ComboBox  Height="25" Width="280"
                             ItemsSource="{Binding Categorie,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedCategories,UpdateSourceTrigger=PropertyChanged}"
@@ -750,16 +777,19 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,103,0,216">
+                            CornerRadius="30" Margin="0,103,0,189">
                                 <StackPanel
                             VerticalAlignment="Center"
                             Margin="10">
-                                    <TextBlock Text="Title"/>
-                                    <TextBox Text="{Binding TitleService,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Description"/>
-                                    <TextBox Text="{Binding DescriptionService,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="CostPerHour"/>
-                                    <TextBox Text="{Binding CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Название"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding TitleService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Описание"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding DescriptionService,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Цена за час "/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <Button Style="{StaticResource ButtonStyle1}" 
                             Content="Добавить услугу"
@@ -849,12 +879,13 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,158,0,222">
+                            CornerRadius="30" Margin="0,158,0,195">
                                 <StackPanel Grid.Column="1" Grid.Row="1"
                             VerticalAlignment="Center"
                             Margin="10">
-                                    <TextBlock Text="Title"/>
-                                    <TextBox Text="{Binding CategorieTitle,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Название"/>
+                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                        Text="{Binding CategorieTitle,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
                             Content="Добавить услугу"
                            Command="{Binding AddCategoriebutton,UpdateSourceTrigger=PropertyChanged}"

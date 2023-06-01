@@ -42,12 +42,12 @@ namespace Diplom.ViewModel
         public List<Role> Role { get => _role; set => Set(ref _role, value, nameof(Role)); }
         public Role SelectedRole { get => _selectedRole; set => Set(ref _selectedRole, value, nameof(SelectedRole)); }
 
-        public string LastName { get => _lastName; set => Set(ref _lastName, value, nameof(LastName)); }
-        public string FirstName { get => _firstName; set => Set(ref _firstName, value, nameof(FirstName)); }
-        public string MiddleName { get => _middleName; set => Set(ref _middleName, value, nameof(MiddleName)); }
+        public string LastName { get => _lastName; set => Set(ref _lastName, FirstLetterToUpper(value), nameof(LastName)); }
+        public string FirstName { get => _firstName; set => Set(ref _firstName, FirstLetterToUpper(value), nameof(FirstName)); }
+        public string MiddleName { get => _middleName; set => Set(ref _middleName, FirstLetterToUpper(value), nameof(MiddleName)); }
         public User User { get => _user; set => Set(ref _user, value, nameof(User)); }
-        public string Login { get => _login; set => Set(ref _login, value, nameof(Login)); }
-        public string Password { get => _password; set => Set(ref _password, value, nameof(Password)); }
+        public string Login { get => _login; set => Set(ref _login, FirstLetterToUpper(value), nameof(Login)); }
+        public string Password { get => _password; set => Set(ref _password, FirstLetterToUpper(value), nameof(Password)); }
 
 
 
@@ -78,7 +78,25 @@ namespace Diplom.ViewModel
             }
         }
 
-
+        private string FirstLetterToUpper(string value)
+        {
+            var newString = new StringBuilder();
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value[0] != value.ToUpper()[0])
+                {
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        if (i == 0)
+                            newString.Append(value.ToUpper()[i]);
+                        else
+                            newString.Append(value[i]);
+                    }
+                    value = newString.ToString();
+                }
+            }
+            return value;
+        }
         private ICollection<User> GetUser() => _userService.GetUsers().ToList();
 
         public ICommand UpdateAccountButton => new Command(updateaccount => UpdateAccountData());
@@ -186,9 +204,9 @@ namespace Diplom.ViewModel
                 }
             }
         }
-        public string FirstNameEmp { get => _firstNameEmp; set => Set(ref _firstNameEmp, value, nameof(FirstNameEmp)); }
-        public string LastNameEmpoyees { get => _lastNameEmp; set => Set(ref _lastNameEmp, value, nameof(LastNameEmpoyees)); }
-        public string MiddleNameEmp { get => _middleNameEmp; set => Set(ref _middleNameEmp, value, nameof(MiddleNameEmp)); }
+        public string FirstNameEmp { get => _firstNameEmp; set => Set(ref _firstNameEmp, FirstLetterToUpper(value), nameof(FirstNameEmp)); }
+        public string LastNameEmpoyees { get => _lastNameEmp; set => Set(ref _lastNameEmp, FirstLetterToUpper(value), nameof(LastNameEmpoyees)); }
+        public string MiddleNameEmp { get => _middleNameEmp; set => Set(ref _middleNameEmp, FirstLetterToUpper(value), nameof(MiddleNameEmp)); }
         public List<Еmployees> Еmployees { get => _еmployees; set => Set(ref _еmployees, value, nameof(Еmployees)); }
         private bool EmploeePropertiesIsNull() => (string.IsNullOrEmpty(FirstNameEmp) || string.IsNullOrEmpty(LastNameEmpoyees) || string.IsNullOrEmpty(MiddleNameEmp));
         private bool EmployeeIsExist() => _employeesService.GetЕmployees().Any(c => c.FirstName == FirstNameEmp && c.LastName == LastNameEmpoyees && c.MiddleName == MiddleNameEmp);

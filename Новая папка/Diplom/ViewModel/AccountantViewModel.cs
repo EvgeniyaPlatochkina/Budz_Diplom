@@ -54,7 +54,7 @@ namespace Diplom.ViewModel
         private List<User> _users;
         public List<User> Users { get => _users; set => Set(ref _users, value, nameof(Users)); }
         public List<Report> Reports { get => _reports; set => Set(ref _reports, value, nameof(Reports)); }
-        public string TitleReport { get => _titleReport; set => Set(ref _titleReport, value, nameof(TitleReport)); }
+        public string TitleReport { get => _titleReport; set => Set(ref _titleReport, FirstLetterToUpper(value), nameof(TitleReport)); }
         public DateTime DateOfCreatingReport { get => _dateOfCreating; set => Set(ref _dateOfCreating, value, nameof(DateOfCreatingReport)); }
         public User SelectedUsers { get => _selectedUser; set => Set(ref _selectedUser, value, nameof(SelectedUsers)); }
 
@@ -63,7 +63,25 @@ namespace Diplom.ViewModel
         private bool ClientIsExist() => _reportService.GetReport().Any(c => c.Title == TitleReport);
 
         private bool PropertiesIsNull() => (string.IsNullOrEmpty(TitleReport));
-
+        private string FirstLetterToUpper(string value)
+        {
+            var newString = new StringBuilder();
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value[0] != value.ToUpper()[0])
+                {
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        if (i == 0)
+                            newString.Append(value.ToUpper()[i]);
+                        else
+                            newString.Append(value[i]);
+                    }
+                    value = newString.ToString();
+                }
+            }
+            return value;
+        }
         private ICollection<Report> GetReport() => _reportService.GetReport().ToList();
         private ICollection<User> GetUsers() => _userService.GetUsers().ToList();
         private void Registration()

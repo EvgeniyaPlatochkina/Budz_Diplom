@@ -11,7 +11,9 @@
     <None Remove="Resources\Icons\Icon.ico" />
     <None Remove="Resources\Icons\icons8-пользователь-без-половых-признаков-64.png" />
     <None Remove="Resources\Icons\User.png" />
+    <None Remove="Resources\Logos\Login.png" />
     <None Remove="Resources\Logos\Logo.png" />
+    <None Remove="Resources\Logos\Password.png" />
     <None Remove="Resources\Pictures\NonPicture.png" />
     <None Remove="Resources\Pictures\png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png" />
     <None Remove="Resources\Pictures\product_1.png" />
@@ -34,6 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -53,7 +57,13 @@
     <Resource Include="Resources\Icons\User.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Logos\Login.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Logos\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Logos\Password.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Pictures\NonPicture.png">

@@ -24,6 +24,7 @@ namespace Diplom.View
     public partial class AccountantWindow : Window
     {
         private AccountantViewModel _accountantViewModel;
+       
         public AccountantWindow(ApplicationDbContext ctx, User user,UserService userService)
         {
             InitializeComponent();
@@ -49,6 +50,11 @@ namespace Diplom.View
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

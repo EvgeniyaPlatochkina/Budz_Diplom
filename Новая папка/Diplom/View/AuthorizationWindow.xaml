@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:Diplom.View"
         xmlns:vm="clr-namespace:Diplom.ViewModel"
         mc:Ignorable="d"
-        Title="Авторизация" Height="450" Width="400"
+        Title="Авторизация" Height="500" Width="400"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
         Icon="{StaticResource Icon}"
         WindowStyle="None"
         AllowsTransparency="True" 
-        Background="Transparent">
+        Background="Transparent"
+       
+         FontFamily="Lucida Console">
     <Border Width="Auto" Height="Auto" Name="windowFrame"
     Background="{StaticResource BackgroundLight}"
           BorderBrush="#395984"
@@ -22,6 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
+                <RowDefinition Height="190"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -29,40 +32,109 @@
                     <ColumnDefinition Width="365*" />
                     <ColumnDefinition Width="33*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle1}" Margin="5,0,3,0"
+                <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle3}" Margin="5,0,3,0"
                         x:Name="ExitButton" Click="ExitButton_Click"/>
-                <Button Grid.Column="0" Content="_" Style="{StaticResource ButtonStyle1}" Margin="337,0,2,0"
+                <Button Grid.Column="0" Content="_" Style="{StaticResource ButtonStyle3}" Margin="337,0,2,0"
                         x:Name="MinButton" Click="MinButton_Click"/>
             </Grid>
 
             <StackPanel VerticalAlignment="Center"
                                 Grid.Row="1">
-
-                <Image Source="{StaticResource Logo}"
-                               Height="150"
-                               Width="150"
+                <Border
+                        Margin="0,50,0,0"
+                        Height="150"
+                        Width="151"
+                        BorderBrush="{StaticResource AccentColor}"
+                        BorderThickness="2"
+                        CornerRadius="20">
+                    <Image
+                               Source="{StaticResource Logo}"
                                Stretch="Uniform"
-                               Margin="0,0,0,40"/>
-
-                <TextBox 
-                Width="170"
-                     MaxLength="20"
-                     Margin="0,0,0,10"
-                     Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <TextBox Width="170"
-                     MaxLength="20"
-                     Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <Button Style="{StaticResource ButtonStyle1}"
-                Content="Войти"
-                                Width="120"
-                                Margin="0,20,0,0"
-                              
-                                Command="{Binding AuthorizationButton}"/>
+                               Margin="8,8,7,8"/>
+                </Border>
 
 
             </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="41*"/>
+                    <RowDefinition Height="33*"/>
+                    <RowDefinition Height="45*"/>
+                    <RowDefinition Height="36.016"/>
+                </Grid.RowDefinitions>
+                <TextBlock  Grid.Row="0"
+                    FontSize="20" Text="Логин" Margin="166,6,166,6"/>
+                <Border 
+                   
+                        Background="{StaticResource PrimaryLightColor}"
+                        BorderBrush="{StaticResource BackgroundVeryDark}"
+                        BorderThickness="2"
+                        CornerRadius="10"
+                        MaxWidth="244"
+                    Grid.Row="1">
+                    <StackPanel 
+                                Orientation="Horizontal">
+                        <Image Margin="5 0 0 0"
+                                    Source="{StaticResource Login}"
+                               
+                                    Height="30"
+                                    Width="38"
+                               ToolTip="{StaticResource CustomToolTipStyle2}"/>
+                        <TextBox    BorderThickness="1"
+                                   
+                                    Style="{StaticResource TextBox1}"
+                                     Background="{StaticResource ThirdColor}"
+                                    BorderBrush="{StaticResource BackgroundVeryDark}"
+                        Width="179"
+                     MaxLength="20"
+                     Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Height="26"/>
+                    </StackPanel>
+                </Border>
+                <TextBlock Grid.Row="2"
+                    FontSize="20" Text="Пароль" Margin="161,5,158,7"/>
+                <Border 
+                        Background="{StaticResource PrimaryLightColor}"
+                        BorderBrush="{StaticResource BackgroundVeryDark}"
+                        BorderThickness="2"
+                        CornerRadius="10"
+                        MaxWidth="244"
+                    Grid.Row="3">
+                    <StackPanel 
+                                Orientation="Horizontal">
+                        <Image Margin="5 0 0 0"
+                                    Source="{StaticResource Password}"
+                                    Height="38"
+                                    Width="40"
+                               ToolTip="{StaticResource CustomToolTipStyle1}"
+                               />
+                        <TextBox    BorderThickness="1"
+                                      Style="{StaticResource TextBox1}"
+                                    Background="{StaticResource ThirdColor}"
+                                    BorderBrush="{StaticResource BackgroundVeryDark}"
+                        Width="188"
+                     MaxLength="20"
+                     Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="29"/>
+                    </StackPanel>
+                </Border>
+
+                <Button Grid.Row="4"
+                    Style="{StaticResource ButtonStyle1}"
+                                ToolTip="{StaticResource CustomToolTip}"
+                        
+                                Content="Войти"
+                                Margin="136,0,138,0"
+                                FontSize="15"
+                              
+                                Command="{Binding AuthorizationButton}"/>
+
+            </Grid>
+
+
+
+
+
+
         </Grid>
     </Border>
 </Window>

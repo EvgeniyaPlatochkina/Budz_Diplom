@@ -4,13 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diplom.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AccountantWindow" Height="500" Width="800"
          Icon="{StaticResource Icon}"
           AllowsTransparency="True" 
+        FontFamily="Lucida Console"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
        Background="Transparent">
+  
     <Border  Width="Auto" Height="Auto" Name="windowFrame"
     Background="{StaticResource BackgroundLight}"
           BorderBrush="#395984"
@@ -31,9 +34,9 @@
                         <ColumnDefinition Width="16*" />
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle1}" Margin="0,0,10,0"
-                        x:Name="ExitButton" Click="ExitButton_Click"/>
-                    <Button Grid.Column="0" Content="_" Style="{StaticResource ButtonStyle1}" Margin="162,0,5,0"
+                    <Button Content="X" Style="{StaticResource ButtonStyle3}" Margin="175,0,7,0"
+                        x:Name="ExitButton" Click="ExitButton_Click" Grid.ColumnSpan="2"/>
+                    <Button Grid.Column="0" Content="_" Style="{StaticResource ButtonStyle3}" Margin="120,0,22,0"
                         x:Name="MinButton" Click="MinButton_Click"/>
                 </Grid>
                 <ListView Grid.Column="0" Grid.Row="1"
@@ -78,8 +81,8 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
-           
-                    <Grid Grid.Column="1" Grid.Row="1">
+
+                <Grid Grid.Column="1" Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="300" />
@@ -90,9 +93,9 @@
                             Background="{StaticResource BackgroundDark}"
                             CornerRadius="20">
                         <StackPanel >
-                        <TextBlock Text="Бухгалтер" Height="15" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding SelectedUsers.FullName,UpdateSourceTrigger=PropertyChanged}" Height="65" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                            <TextBlock Foreground="{StaticResource AccentColor}" Text="Бухгалтер" Height="15" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding SelectedUsers.FullName,UpdateSourceTrigger=PropertyChanged}" Height="65" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </Border>
                     <Border Grid.Row="1"
                         Margin="3"
@@ -102,10 +105,15 @@
                             VerticalAlignment="Center"
                             Margin="10">
 
-                            <TextBlock Text="Название отчета"/>
-                            <TextBox Text="{Binding TitleReport, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Text="Дата создания"/>
-                            <DatePicker SelectedDate="{Binding DateOfCreatingReport, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBlock Text="Название изменения"  Foreground="{StaticResource AccentColor}" />
+                            <TextBox x:Name="textBox"
+                                TextChanged="TextBox_TextChanged"
+                                Style="{StaticResource TextBox2}"
+                                Text="{Binding TitleReport, UpdateSourceTrigger=PropertyChanged}" Width="198"/>
+                            <TextBlock Text="Дата создания" Foreground="{StaticResource AccentColor}"/>
+                           
+                            <DatePicker
+                                SelectedDate="{Binding DateOfCreatingReport, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="0,0,0,5"/>
 
                             <Button Style="{StaticResource ButtonStyle1}"
@@ -128,13 +136,13 @@
                     </Border>
                     <Border 
                         Grid.Row="2"
-                        Margin="40 40 40 40"
+                        Margin="38,38,40,40"
                             Background="{StaticResource BackgroundDark}"
                             CornerRadius="50">
-                        <Button Style="{StaticResource ButtonStyle1}" Content="Выйти"  Margin="10 10 10 10" Click="Button_Click"/>
-                            </Border>
+                        <Button Style="{StaticResource ButtonStyle1}" Content="Выйти"  Margin="13,10,14,10" Click="Button_Click"/>
+                    </Border>
                 </Grid>
-           
+
 
             </Grid>
         </Grid>

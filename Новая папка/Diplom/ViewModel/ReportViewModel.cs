@@ -65,11 +65,32 @@ namespace Diplom.ViewModel
             ServiceSaleService = _serviceService.GetServices();
         }
         private ApplicationDbContext _ctx;
+        #region ToUpper
+        private string FirstLetterToUpper(string value)
+        {
+            var newString = new StringBuilder();
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value[0] != value.ToUpper()[0])
+                {
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        if (i == 0)
+                            newString.Append(value.ToUpper()[i]);
+                        else
+                            newString.Append(value[i]);
+                    }
+                    value = newString.ToString();
+                }
+            }
+            return value;
+        }
+        #endregion
         #region Categorie
-        
+
         private string _categorieTitle;
         private Categorie _selectedCategorieTitle;
-        public string CategorieTitle { get => _categorieTitle; set => Set(ref _categorieTitle, value, nameof(CategorieTitle)); }
+        public string CategorieTitle { get => _categorieTitle; set => Set(ref _categorieTitle, FirstLetterToUpper(value), nameof(CategorieTitle)); }
         public Categorie SelectedCategorieTitle
         {
             get => _selectedCategorieTitle;
@@ -106,7 +127,7 @@ namespace Diplom.ViewModel
         private void UpdateCategorieData()
         {
             if (SelectedCategorieTitleIsNull())
-                MessageBox.Show("Все поля должны быть заполнены!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите категорию", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 _selectedCategorieTitle.Title = CategorieTitle;
@@ -321,7 +342,7 @@ namespace Diplom.ViewModel
                 }
             }
         }
-        public string ArticleService { get => _articleService; set => Set(ref _articleService, value, nameof(ArticleService)); }
+        public string ArticleService { get => _articleService; set => Set(ref _articleService, FirstLetterToUpper(value), nameof(ArticleService)); }
         public DateTime DateOfSaleService { get => _dateOfSaleService; set => Set(ref _dateOfSaleService, value, nameof(DateOfSaleService)); }
         public List<Organization> OrganizationsSaleService { get => _organizationsSaleService; set => Set(ref _organizationsSaleService, value, nameof(OrganizationsSaleService)); }
         public List<Service> ServiceSaleService { get => _serviceSaleService; set => Set(ref _serviceSaleService, value, nameof(ServiceSaleService)); }
@@ -366,7 +387,7 @@ namespace Diplom.ViewModel
         private void UpdateSaleServiceData()
         {
             if (SelectedSaleServiceIsNull())
-                MessageBox.Show("Все поля должны быть заполнены!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите продажу услуги", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 _selectedSaleService.Article = ArticleService;
@@ -377,7 +398,7 @@ namespace Diplom.ViewModel
                 _selectedSaleService.ЕmployeesiD = SelectedEmployeesService.Id;
                 _selectedSaleService.Income = SelectedServiceSale.CostPerHour;
                 _saleServiceService.Update(_selectedSaleService);
-                MessageBox.Show("Данные  услуги успешно обновлены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Данные продажи  услуги успешно обновлены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 UpdateLists();
             }
         }
@@ -436,7 +457,7 @@ namespace Diplom.ViewModel
         }
 
 
-        public string ArticleProduct { get => _articleProduct; set => Set(ref _articleProduct, value, nameof(ArticleProduct)); }
+        public string ArticleProduct { get => _articleProduct; set => Set(ref _articleProduct, FirstLetterToUpper(value), nameof(ArticleProduct)); }
         public DateTime DateOfSaleProduct { get => _dateOfSaleProduct; set => Set(ref _dateOfSaleProduct, value, nameof(DateOfSaleProduct)); }
         public List<Organization> OrganizationsSaleProduct { get => _organizationsSaleProduct; set => Set(ref _organizationsSaleProduct, value, nameof(OrganizationsSaleProduct)); }
         public List<Product> ProductsSaleProduct { get => _productsSaleProduct; set => Set(ref _productsSaleProduct, value, nameof(ProductsSaleProduct)); }
@@ -480,7 +501,7 @@ namespace Diplom.ViewModel
         private void UpdateSaleProductData()
         {
             if (SelectedSaleProductIsNull())
-                MessageBox.Show("Все поля должны быть заполнены!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите продажу товара", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 _selectedSaleProduct.Article = ArticleProduct;
@@ -551,12 +572,12 @@ namespace Diplom.ViewModel
             }
         }
         public List<Organization> Organizations { get => _organizations; set => Set(ref _organizations, value, nameof(Organizations)); }
-        public string TitleOrganization { get => _titleOrganization; set => Set(ref _titleOrganization, value, nameof(TitleOrganization)); }
-        public string LegalAdress { get => _legalAdress; set => Set(ref _legalAdress, value, nameof(LegalAdress)); }
+        public string TitleOrganization { get => _titleOrganization; set => Set(ref _titleOrganization, FirstLetterToUpper(value), nameof(TitleOrganization)); }
+        public string LegalAdress { get => _legalAdress; set => Set(ref _legalAdress, FirstLetterToUpper(value), nameof(LegalAdress)); }
         public int Inn { get => _inn; set => Set(ref _inn, value, nameof(Inn)); }
         public int Kpp { get => _kpp; set => Set(ref _kpp, value, nameof(Kpp)); }
-        public string Owner { get => _owner; set => Set(ref _owner, value, nameof(Owner)); }
-        public string MailAdress { get => _mailAdress; set => Set(ref _mailAdress, value, nameof(MailAdress)); }
+        public string Owner { get => _owner; set => Set(ref _owner, FirstLetterToUpper(value), nameof(Owner)); }
+        public string MailAdress { get => _mailAdress; set => Set(ref _mailAdress, FirstLetterToUpper(value), nameof(MailAdress)); }
         public int NumberPhone { get => _numberPhone; set => Set(ref _numberPhone, value, nameof(NumberPhone)); }
         public int BankAccountNumber { get => _bankAccountNumber; set => Set(ref _bankAccountNumber, value, nameof(BankAccountNumber)); }
         public int Ogrn { get => _ogrn; set => Set(ref _ogrn, value, nameof(Ogrn)); }
@@ -612,7 +633,7 @@ namespace Diplom.ViewModel
         private void UpdateOrganizationsData()
         {
             if (SelectedOrganizationsIsNull())
-                MessageBox.Show("Все поля должны быть заполнены!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите организации!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 _selectedOrganization.Title = TitleOrganization;
@@ -672,10 +693,10 @@ namespace Diplom.ViewModel
         public PictureProduct SelectedPictureProduct { get => _selectedPictureporoduct; set => Set(ref _selectedPictureporoduct, value, nameof(SelectedPictureProduct)); }
         public Product Product { get => _product; set => Set(ref _product, value, nameof(Product)); }
         public List<Categorie> Categorie { get => _categorie; set => Set(ref _categorie, value, nameof(Categorie)); }
-        public string TitleProduct { get => _titleProduct; set => Set(ref _titleProduct, value, nameof(TitleProduct)); }
-        public string DescriptionProduct { get => _descripionProduct; set => Set(ref _descripionProduct, value, nameof(DescriptionProduct)); }
+        public string TitleProduct { get => _titleProduct; set => Set(ref _titleProduct, FirstLetterToUpper(value), nameof(TitleProduct)); }
+        public string DescriptionProduct { get => _descripionProduct; set => Set(ref _descripionProduct, FirstLetterToUpper(value), nameof(DescriptionProduct)); }
         public string PictureSelected { get => _picture; set => Set(ref _picture, value, nameof(PictureSelected)); }
-        public string Guarantee { get => _guarantee; set => Set(ref _guarantee, value, nameof(Guarantee)); }
+        public string Guarantee { get => _guarantee; set => Set(ref _guarantee, FirstLetterToUpper(value), nameof(Guarantee)); }
         public decimal Discount { get => _discount; set => Set(ref _discount, value, nameof(Discount)); }
         public decimal Cost { get => _cost; set => Set(ref _cost, value, nameof(Cost)); }
         public Categorie SelectedCategories { get => _selectedCategorie; set => Set(ref _selectedCategorie, value, nameof(SelectedCategories)); }
@@ -726,7 +747,7 @@ namespace Diplom.ViewModel
         private void UpdateProductData()
         {
             if (SelectedProductIsNull())
-                MessageBox.Show("Все поля должны быть заполнены!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите товар!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 _selectedProduct.Title = TitleProduct;
@@ -737,7 +758,7 @@ namespace Diplom.ViewModel
                 _selectedProduct.Discount = Discount;
                 _selectedProduct.Cost = Cost;
                 _productService.Update(_selectedProduct);
-                MessageBox.Show("Данные услуги  успешно обновлены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Данные Товара  успешно обновлены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 UpdateLists();
             }
         }
@@ -753,7 +774,7 @@ namespace Diplom.ViewModel
                 }
             }
             else
-                MessageBox.Show("Выберите услугу", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите Товар", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
         #region Service
@@ -765,8 +786,8 @@ namespace Diplom.ViewModel
         private string _decription;
         private decimal _costPerHour;
         public decimal CostPerHour { get => _costPerHour; set => Set(ref _costPerHour, value, nameof(CostPerHour)); }
-        public string TitleService { get => _titleService; set => Set(ref _titleService, value, nameof(TitleService)); }
-        public string DescriptionService { get => _decription; set => Set(ref _decription, value, nameof(DescriptionService)); }
+        public string TitleService { get => _titleService; set => Set(ref _titleService, FirstLetterToUpper(value), nameof(TitleService)); }
+        public string DescriptionService { get => _decription; set => Set(ref _decription, FirstLetterToUpper(value), nameof(DescriptionService)); }
         public Service SelectedService
         {
             get => _selectedService;
@@ -811,7 +832,7 @@ namespace Diplom.ViewModel
         private void UpdateServiceData()
         {
             if (SelectedServiceIsNull())
-                MessageBox.Show("Все поля должны быть заполнены!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выбирете услугу", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 _selectedService.Title = TitleService;

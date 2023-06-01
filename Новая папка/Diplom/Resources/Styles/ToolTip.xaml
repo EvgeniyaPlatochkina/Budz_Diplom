@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ToolTipStyle" TargetType="{x:Type ToolTip}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#2D2D2D"/>
+        <Setter Property="Background"  Value="#000000" />
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Grid>
+                        <Border
+                            Background="Gray">
+                            <TextBlock Text="Авторизация" TextWrapping="Wrap" MaxWidth="500" Margin="3" Foreground="White" FontFamily="Lucida Console" FontWeight="Normal"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ToolTipStyle1" TargetType="{x:Type ToolTip}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#2D2D2D"/>
+        <Setter Property="Background"  Value="#000000" />
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Grid>
+                        <Border
+                            Background="Gray"
+                            CornerRadius="10"
+                            BorderBrush="Black"
+                            BorderThickness="1">
+                            <TextBlock Text="Введите Пароль" TextWrapping="Wrap" MaxWidth="500" Margin="3" Foreground="White" FontFamily="Lucida Console" FontWeight="Normal"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ToolTipStyle2" TargetType="{x:Type ToolTip}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#2D2D2D"/>
+        <Setter Property="Background"  Value="#000000" />
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Grid>
+                        <Border
+                            Background="Gray"
+                            CornerRadius="10"
+                            BorderBrush="Black"
+                            BorderThickness="1">
+                            <TextBlock Text="Введите Логин" TextWrapping="Wrap" MaxWidth="500" Margin="3" Foreground="White" FontFamily="Lucida Console" FontWeight="Normal"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Defines the customized tooltip. -->
+    <ToolTip x:Key="CustomToolTip" Style="{StaticResource ToolTipStyle}"/>
+    <ToolTip x:Key="CustomToolTipStyle1" Style="{StaticResource ToolTipStyle1}"/>
+    <ToolTip x:Key="CustomToolTipStyle2" Style="{StaticResource ToolTipStyle2}"/>
+</ResourceDictionary>

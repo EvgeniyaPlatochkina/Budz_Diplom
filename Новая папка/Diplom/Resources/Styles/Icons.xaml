@@ -4,7 +4,8 @@
     <ImageSource x:Key="Logo">\Resources\Logos\Logo.png</ImageSource>
     <ImageSource x:Key="Icon">\Resources\Icons\Icon.ico</ImageSource>
     <ImageSource x:Key="User">\Resources\Icons\User.png</ImageSource>
-
+    <ImageSource x:Key="Login">\Resources\Logos\Login.png</ImageSource>
+    <ImageSource x:Key="Password">\Resources\Logos\Password.png</ImageSource>
 
 
 </ResourceDictionary>
