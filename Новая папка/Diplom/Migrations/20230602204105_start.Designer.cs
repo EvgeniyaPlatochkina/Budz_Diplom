@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diplom.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230522131206_start")]
+    [Migration("20230602204105_start")]
     partial class start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,14 +74,17 @@ namespace Diplom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BankAccountNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("BankAccountNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("INN")
-                        .HasColumnType("int");
+                    b.Property<string>("INN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KPP")
-                        .HasColumnType("int");
+                    b.Property<string>("KPP")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LegalAddress")
                         .IsRequired()
@@ -91,18 +94,21 @@ namespace Diplom.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NumberPhone")
-                        .HasColumnType("int");
+                    b.Property<string>("NumberPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OGRN")
-                        .HasColumnType("int");
+                    b.Property<string>("OGRN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OKATO")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OKPO")
-                        .HasColumnType("int");
+                    b.Property<string>("OKPO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner")
                         .IsRequired()

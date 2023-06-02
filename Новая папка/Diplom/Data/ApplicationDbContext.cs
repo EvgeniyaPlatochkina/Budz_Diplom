@@ -10,7 +10,7 @@ namespace Diplom.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        private const string connectionString = @"Server=localhost\SQLEXPRESS; Database=DIPLOM5; Trusted_Connection=true; TrustServerCertificate=true;";
+        private const string connectionString = @"Server=localhost\SQLEXPRESS; Database=DIPLOM6; Trusted_Connection=true; TrustServerCertificate=true;";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -538,15 +538,15 @@ namespace Diplom.ViewModel
         private OrganizationService _organizationService;
         private string _titleOrganization;
         private string _legalAdress;
-        private int _inn;
-        private int _kpp;
+        private string _inn;
+        private string _kpp;
         private string _owner;
         private string _mailAdress;
-        private int _numberPhone;
-        private int _bankAccountNumber;
-        private int _ogrn;
+        private string _numberPhone;
+        private string _bankAccountNumber;
+        private string _ogrn;
         private string _okta;
-        private int _okpo;
+        private string _okpo;
 
         public Organization SelectedOrganization
         {
@@ -574,15 +574,15 @@ namespace Diplom.ViewModel
         public List<Organization> Organizations { get => _organizations; set => Set(ref _organizations, value, nameof(Organizations)); }
         public string TitleOrganization { get => _titleOrganization; set => Set(ref _titleOrganization, FirstLetterToUpper(value), nameof(TitleOrganization)); }
         public string LegalAdress { get => _legalAdress; set => Set(ref _legalAdress, FirstLetterToUpper(value), nameof(LegalAdress)); }
-        public int Inn { get => _inn; set => Set(ref _inn, value, nameof(Inn)); }
-        public int Kpp { get => _kpp; set => Set(ref _kpp, value, nameof(Kpp)); }
+        public string Inn { get => _inn; set => Set(ref _inn, value, nameof(Inn)); }
+        public string Kpp { get => _kpp; set => Set(ref _kpp, value, nameof(Kpp)); }
         public string Owner { get => _owner; set => Set(ref _owner, FirstLetterToUpper(value), nameof(Owner)); }
         public string MailAdress { get => _mailAdress; set => Set(ref _mailAdress, FirstLetterToUpper(value), nameof(MailAdress)); }
-        public int NumberPhone { get => _numberPhone; set => Set(ref _numberPhone, value, nameof(NumberPhone)); }
-        public int BankAccountNumber { get => _bankAccountNumber; set => Set(ref _bankAccountNumber, value, nameof(BankAccountNumber)); }
-        public int Ogrn { get => _ogrn; set => Set(ref _ogrn, value, nameof(Ogrn)); }
+        public string NumberPhone { get => _numberPhone; set => Set(ref _numberPhone, value, nameof(NumberPhone)); }
+        public string BankAccountNumber { get => _bankAccountNumber; set => Set(ref _bankAccountNumber, value, nameof(BankAccountNumber)); }
+        public string Ogrn { get => _ogrn; set => Set(ref _ogrn, value, nameof(Ogrn)); }
         public string Okta { get => _okta; set => Set(ref _okta, value, nameof(Okta)); }
-        public int Okpo { get => _okpo; set => Set(ref _okpo, value, nameof(Okpo)); }
+        public string Okpo { get => _okpo; set => Set(ref _okpo, value, nameof(Okpo)); }
 
         private bool OrganizationIsExist() => _organizationService.GetOrganization().Any(c => c.Title == TitleOrganization && c.INN == Inn && c.KPP == Kpp && c.OGRN == Ogrn && c.OKATO == Okta && c.OKPO== Okpo);
         private bool PropertiesIsNull() => (string.IsNullOrEmpty(TitleOrganization) || string.IsNullOrEmpty(LegalAdress) || string.IsNullOrEmpty(Owner) || string.IsNullOrEmpty(MailAdress) || string.IsNullOrEmpty(Okta) || Inn == null! || Kpp == null! || NumberPhone == null! || BankAccountNumber == null! || Ogrn ==null! || Okpo == null!);

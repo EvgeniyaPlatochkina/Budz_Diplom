@@ -85,7 +85,7 @@ namespace Diplom.ViewModel
             else if (UserIsExits())
             {
 
-                if(GetRole() == "директор")
+                if(GetRole() == "Глав. бухгалтер")
                 {
                     var DirectorWindow = new DirectorWindow(_ctx, _userService.GetUsers().Single(c => c.Password == Password && c.Login == Login));
                     var CurrentWindow = Application.Current.MainWindow;

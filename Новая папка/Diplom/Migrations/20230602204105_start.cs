@@ -45,15 +45,15 @@ namespace Diplom.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LegalAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    INN = table.Column<int>(type: "int", nullable: false),
-                    KPP = table.Column<int>(type: "int", nullable: false),
+                    INN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    KPP = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Owner = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MailingAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumberPhone = table.Column<int>(type: "int", nullable: false),
-                    BankAccountNumber = table.Column<int>(type: "int", nullable: false),
-                    OGRN = table.Column<int>(type: "int", nullable: false),
+                    NumberPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BankAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OGRN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OKATO = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OKPO = table.Column<int>(type: "int", nullable: false)
+                    OKPO = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -17,15 +17,15 @@ namespace Diplom.Data.Entities
         public int Id { get; set; }
         public string Title { get; set; }
         public string LegalAddress { get; set; }
-        public int INN { get; set; }
-        public int KPP { get; set; }
+        public string INN { get; set; }
+        public string KPP { get; set; }
         public string Owner { get; set; }
         public string MailingAddress { get; set; }
-        public int NumberPhone { get; set; }
-        public int BankAccountNumber { get; set; }
-        public int OGRN { get; set; }
+        public string NumberPhone { get; set; }
+        public string BankAccountNumber { get; set; }
+        public string OGRN { get; set; }
         public string OKATO { get; set; }
-        public int OKPO { get; set; }
+        public string OKPO { get; set; }
 
         public ICollection<SaleProduct> SaleProducts { get; set; } = null!;
         public ICollection<SaleService> SaleServices { get; set; } = null!;
