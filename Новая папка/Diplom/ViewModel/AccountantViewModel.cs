@@ -21,6 +21,7 @@ namespace Diplom.ViewModel
             SelectedUsers = user;
             _reportService = new(_ctx);
             _userService = new(_ctx);
+            _categorieService = new(_ctx);
             DateOfCreatingReport = DateTime.Now;
            
             UpdateLists();
@@ -34,6 +35,7 @@ namespace Diplom.ViewModel
         private List<Report> _reports;
         private Report _selectedReport;
         private Report _report;
+        private CategorieService _categorieService;
         private Window Window;
 
         public Report SelectedReport
@@ -134,7 +136,7 @@ namespace Diplom.ViewModel
         public void OpenAccountantWindow()
         {
             if (!SelectedReportIsNull())
-                new ReportWindow(SelectedReport, _ctx, _userService).ShowDialog();
+                new ReportWindow(SelectedReport, _ctx, _userService, _categorieService).ShowDialog();
             UpdateLists();
         }
         public void ExitAccountantWindow()

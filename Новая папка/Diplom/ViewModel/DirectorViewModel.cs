@@ -20,6 +20,7 @@ namespace Diplom.ViewModel
             _userService = new(_ctx);
             _roleService = new(_ctx);
             _employeesService = new(_ctx);
+          
             Role = _roleService.GetRole();
             User = user;
             UpdateLists();
@@ -29,6 +30,7 @@ namespace Diplom.ViewModel
         private List<User> _users;
         private UserService _userService;
         private RoleService _roleService;
+        private CategorieService _categorieService;
         private string _searchUserValue;
         private string _lastName;
         private string _firstName;

@@ -15,7 +15,7 @@ namespace Diplom.ViewModel
 {
     public class ReportViewModel : ViewModelBase
     {
-        public ReportViewModel(ApplicationDbContext ctx)
+        public ReportViewModel(ApplicationDbContext ctx,CategorieService categorieService)
         {
             _ctx = ctx;
             _organizationService = new(_ctx);
@@ -36,8 +36,8 @@ namespace Diplom.ViewModel
             ProductFilthersDate = new List<string> { "Не выбрана", "за 1 год", "за 2 год", "за 3 год" };
             ProductSorts = new List<string> { "Не выбрана", "По стоимости(убыв.)", "По стоимости(возр.)",};
             ServiceSorts = new List<string> { "Не выбрана", "По стоимости(убыв.)", "По стоимости(возр.)",};
-            ProductFilthers.AddRange(_categorieService.GetCategories().Select(c => c.Title));
-            ProductFilthersTtile.AddRange(_productService.GetProducts().Select(c => c.Title));
+            ProductFilthers.AddRange(_categorieService.GetCategories().Select(c => c.Title).ToList());
+            ProductFilthersTtile.AddRange(_productService.GetProducts().Select(c => c.Title).ToList()); 
             SelectedProductFilther = ProductFilthers[0];
             SelectedProductFiltherTitle = ProductFilthersTtile[0];
             SelectedProductFiltherDate = ProductFilthersDate[0];

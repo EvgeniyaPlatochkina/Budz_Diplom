@@ -24,10 +24,10 @@ namespace Diplom.View
     public partial class ReportWindow : Window
     {
         private ReportViewModel _reportViewModel;
-        public ReportWindow(Report report, ApplicationDbContext ctx, UserService userService)
+        public ReportWindow(Report report, ApplicationDbContext ctx, UserService userService,CategorieService categorieService)
         {
             InitializeComponent();
-            DataContext = _reportViewModel = new ReportViewModel(ctx);
+            DataContext = _reportViewModel = new ReportViewModel(ctx, categorieService);
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

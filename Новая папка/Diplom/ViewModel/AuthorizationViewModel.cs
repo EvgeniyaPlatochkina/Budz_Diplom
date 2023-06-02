@@ -19,6 +19,7 @@ namespace Diplom.ViewModel
         {
             _ctx = new();
             _userService = new(_ctx);
+            
             Window = window;
         }
         #region Context
@@ -26,6 +27,7 @@ namespace Diplom.ViewModel
         #endregion
         #region Services
         private UserService _userService;
+        private CategorieService _categorieService;
         private User _user;
         #endregion
         #region Fields & Properties
