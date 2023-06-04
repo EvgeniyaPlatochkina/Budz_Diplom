@@ -118,7 +118,7 @@
                                             <Button Style="{StaticResource ButtonStyle1}" Margin=" 10 10 10 10" 
                     Content="Изменить Бухгалтера"
                    Command="{Binding UpdateAccountButton,UpdateSourceTrigger=PropertyChanged}"/>
-                                            <Button Style="{StaticResource ButtonStyle1}"  Content="Выйти"  Click="Button_Click" Height="37" Width="110"/>
+                                            <Button Command="{Binding ExitButton,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ButtonStyle1}"  Content="Выйти" Height="37" Width="110"/>
                                         </StackPanel>
                                     </Border>
                                 </Grid>
@@ -251,7 +251,7 @@
                     Content="изменить Сотрудника"
                    Command="{Binding UpdateEmployeeButton,UpdateSourceTrigger=PropertyChanged}"/>
 
-                                            <Button Style="{StaticResource ButtonStyle1}" Margin=" 10 10 10 10"  Content="Выйти"  Click="Button_Click_1" Width="130"/>
+                                            <Button Command="{Binding ExitButton,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ButtonStyle1}" Margin=" 10 10 10 10"  Content="Выйти"  Width="130"/>
                                         </StackPanel>
                                     </Border>
                                 </Grid>

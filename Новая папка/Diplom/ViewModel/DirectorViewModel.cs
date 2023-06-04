@@ -189,10 +189,13 @@ namespace Diplom.ViewModel
         }
         public void ExitDirectorWindow()
         {
-            new AuthorizationWindow().Show();
+            var AuthorizationWindow = new AuthorizationWindow();
             var CurrentWindow = Application.Current.MainWindow;
+            AuthorizationWindow.Show();
+            Application.Current.MainWindow = AuthorizationWindow;
             CurrentWindow.Close();
         }
+        public ICommand ExitButton => new Command(exit => ExitDirectorWindow());
         #region Сотрудники
         private EmployeesService _employeesService;
         private List<Еmployees> _еmployees;

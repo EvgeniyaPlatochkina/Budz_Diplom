@@ -31,11 +31,7 @@ namespace Diplom.View
             DataContext = _directorView = new DirectorViewModel(ctx,user);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _directorView.ExitDirectorWindow();
-        }
-
+       
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -47,10 +43,7 @@ namespace Diplom.View
             this.WindowState = WindowState.Minimized;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            _directorView.ExitDirectorWindow();
-        }
+       
 
         //private void MinButton_Click(object sender, RoutedEventArgs e)
         //{

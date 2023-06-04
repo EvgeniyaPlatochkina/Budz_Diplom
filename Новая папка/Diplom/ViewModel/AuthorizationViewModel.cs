@@ -91,8 +91,10 @@ namespace Diplom.ViewModel
                 {
                     var DirectorWindow = new DirectorWindow(_ctx, _userService.GetUsers().Single(c => c.Password == Password && c.Login == Login));
                     var CurrentWindow = Application.Current.MainWindow;
-                    DirectorWindow.ShowDialog();
+                    DirectorWindow.Show();
                     Application.Current.MainWindow = DirectorWindow;
+                    CurrentWindow.Close();
+                    Window.Close();
                 }
                 else
                 {
