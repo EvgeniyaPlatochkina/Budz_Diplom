@@ -879,7 +879,7 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,158,0,195">
+                            CornerRadius="30" Margin="0,173,0,195">
                                 <StackPanel Grid.Column="1" Grid.Row="1"
                             VerticalAlignment="Center"
                             Margin="10">
