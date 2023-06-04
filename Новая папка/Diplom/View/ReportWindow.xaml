@@ -652,7 +652,7 @@
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding TitleProduct,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Описание"/>
-                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                    <TextBox TextWrapping="Wrap" Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding DescriptionProduct,UpdateSourceTrigger=PropertyChanged}"  Height="80"/>
                                     <TextBlock Text="Картинка"/>
                                     <ComboBox Height="25"
@@ -777,15 +777,15 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,103,0,189">
+                            CornerRadius="30" Margin="0,32,0,189">
                                 <StackPanel
                             VerticalAlignment="Center"
-                            Margin="10">
+                            Margin="10,0,10,0" Height="314">
                                     <TextBlock Text="Название"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding TitleService,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Описание"/>
-                                    <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                    <TextBox TextWrapping="Wrap" Height="90" Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding DescriptionService,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Цена за час "/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
@@ -802,7 +802,7 @@
                                     <Button Style="{StaticResource ButtonStyle1}" 
                             Content="Удалить"
                           Command="{Binding DeleteServiceButton,UpdateSourceTrigger=PropertyChanged}"
-                            Margin="0,4"/>
+                            Margin="0,4" Height="47" Width="277"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
