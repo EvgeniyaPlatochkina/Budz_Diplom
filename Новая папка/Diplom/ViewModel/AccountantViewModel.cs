@@ -99,7 +99,7 @@ namespace Diplom.ViewModel
                 MessageBox.Show("Report add!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
                 UpdateLists();
 
-
+                
             }
         }
         private bool SelectedReportIsNull() => SelectedReport == null;

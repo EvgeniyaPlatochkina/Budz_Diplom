@@ -20,14 +20,17 @@ namespace Diplom.ViewModel
             _userService = new(_ctx);
             _roleService = new(_ctx);
             _employeesService = new(_ctx);
-          
-            Role = _roleService.GetRole();
+            _reportService = new(_ctx);
+             Role = _roleService.GetRole();
             User = user;
             UpdateLists();
         }
         private User _selectedUser;
         private ApplicationDbContext _ctx;
+        private ReportService _reportService;
         private List<User> _users;
+        private List<Report> _reports;
+        public List<Report> Reports { get => _reports; set => Set(ref _reports, value, nameof(Reports)); }
         private UserService _userService;
         private RoleService _roleService;
         private CategorieService _categorieService;
@@ -132,6 +135,7 @@ namespace Diplom.ViewModel
         {
             Users = SearchUser(_userService.GetUsers().ToList());
             Еmployees = _employeesService.GetЕmployees().ToList();
+            Reports = _reportService.GetReport().ToList();
         }
         private List<User> SearchUser(List<User> searchUser)
         {

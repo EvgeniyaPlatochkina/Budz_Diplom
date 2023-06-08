@@ -65,7 +65,7 @@
                                        HorizontalAlignment="Left"/>
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="Пользователь" Height="18" HorizontalAlignment="Center" Width="110"/>
-                                                <TextBlock Text="{Binding User.FullName,UpdateSourceTrigger=PropertyChanged}" Height="65" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding User.Name,UpdateSourceTrigger=PropertyChanged}" Height="65" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                                             </StackPanel>
 
                                         </Grid>
@@ -212,7 +212,7 @@
                                        HorizontalAlignment="Left"/>
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="Пользователь" Height="20" HorizontalAlignment="Center" Width="110"/>
-                                                <TextBlock Text="{Binding User.FullName,UpdateSourceTrigger=PropertyChanged}" Height="65" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding User.Name,UpdateSourceTrigger=PropertyChanged}" Height="65" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                                             </StackPanel>
 
                                         </Grid>
@@ -310,7 +310,58 @@
                             </Grid>
                         </Grid>
                     </TabItem>
+                    <TabItem  Header="Изменения">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Row="1"
+                          ItemsSource="{Binding Reports,UpdateSourceTrigger=PropertyChanged}"
+                         
+                          x:Name="PracticesListView"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          VerticalAlignment="Stretch"
+                          Background="Transparent" 
+                         BorderThickness="0"
+                       >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border BorderThickness="1"
+                                            Background="{StaticResource BackgroundWhite}"
+                                                BorderBrush="Black"
+                                                Margin="4"
+                                              CornerRadius="10"
+                                                x:Name="Border"
+                                            >
+                                                        <StackPanel Margin="3">
+                                                            <TextBlock Text="{Binding Title, StringFormat=Изменения: {0}}"
+                                                      
+                                                       />
+                                                            <TextBlock Text="{Binding DateOfСreation, StringFormat=Дата-Изменения: {0}}"
+                                                      />
+                                                            <TextBlock Text="{Binding User.FullName, StringFormat=Бухгалтер: {0}}"
+                                                   />
+                                                        </StackPanel>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
 
+                        </Grid>
+                    </TabItem>
                 </TabControl>
 
 

@@ -31,5 +31,8 @@ namespace Diplom.Data.Entities
 
         [NotMapped]
         public string FullName { get => $"{LastName} {FirstName} {MiddleName}"; }
+
+        [NotMapped]
+        public string Name { get => $"{LastName} {FirstName}"; }
     }
 }
