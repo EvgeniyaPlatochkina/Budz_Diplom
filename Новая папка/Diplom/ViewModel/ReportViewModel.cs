@@ -134,6 +134,7 @@ namespace Diplom.ViewModel
                 _categorieService.Update(_selectedCategorieTitle);
                 MessageBox.Show("Данные категории  успешно обновлены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 UpdateLists();
+                SelectedCategorieTitle = null!;
             }
         }
         public void DeleteCategorie()
@@ -145,6 +146,7 @@ namespace Diplom.ViewModel
                 {
                     _categorieService.Delete(SelectedCategorieTitle);
                     UpdateLists();
+                    SelectedCategorieTitle = null!;
                 }
             }
             else

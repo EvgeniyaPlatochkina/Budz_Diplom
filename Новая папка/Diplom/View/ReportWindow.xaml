@@ -185,7 +185,8 @@
                             Margin="10,0,10,0" Height="434">
                                     <TextBlock Text="Артикул"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
-                                        Text="{Binding ArticleProduct,UpdateSourceTrigger=PropertyChanged}" />
+                                        Text="{Binding ArticleProduct,UpdateSourceTrigger=PropertyChanged}"
+                                                MaxLength="15" />
                                     <TextBlock Text="Дата продажи"/>
                                     <DatePicker SelectedDate="{Binding DateOfSaleProduct, UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Организация"/>
@@ -202,10 +203,13 @@
                                   DisplayMemberPath="Title" />
                                     <TextBlock Text="Доходы"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                             IsEnabled="False"
                                         Text="{Binding SelectedProductSaleProduct.Cost,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <TextBlock Text="Прибыль"/>
+                                    <TextBlock Text="Прибыль"
+                                               IsEnabled="False"/>
                                     <TextBox   Style="{StaticResource TextBox2}" Width="275"
-                                        Text="{Binding Profit,UpdateSourceTrigger=PropertyChanged}"/>
+                                        Text="{Binding Profit,UpdateSourceTrigger=PropertyChanged}"
+                                               IsEnabled="False"/>
                                     <TextBlock Text="Сотрудник"/>
                                     <ComboBox Height="25"
                                     Width="280"
@@ -340,6 +344,7 @@
                             Margin="10">
                                     <TextBlock Text="Артикул"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                             MaxLength="15"
                                         Text="{Binding ArticleService,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Дата продажи"/>
                                     <DatePicker SelectedDate="{Binding DateOfSaleService, UpdateSourceTrigger=PropertyChanged}"/>
@@ -357,10 +362,12 @@
                                   DisplayMemberPath="Title" />
                                     <TextBlock Text="Доходы"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
-                                        Text="{Binding SelectedServiceSale.CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
+                                        Text="{Binding SelectedServiceSale.CostPerHour,UpdateSourceTrigger=PropertyChanged}"
+                                              IsEnabled="False"/>
                                     <TextBlock Text="Прибыль"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
-                                        Text="{Binding ProfitService,UpdateSourceTrigger=PropertyChanged}"/>
+                                        Text="{Binding ProfitService,UpdateSourceTrigger=PropertyChanged}"
+                                              IsEnabled="False"/>
                                     <TextBlock Text="Сотрудник"/>
                                     <ComboBox Height="25"
                                   Width="280"
@@ -492,9 +499,11 @@
                                         Text="{Binding LegalAdress,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="ИНН"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                             MaxLength="9"
                                         Text="{Binding Inn,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="КПП"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                               MaxLength="11"
                                         Text="{Binding Kpp,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="ФИЗ-Лицо"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
@@ -504,18 +513,23 @@
                                         Text="{Binding MailAdress,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Номер телефона"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                               MaxLength="11"
                                         Text="{Binding NumberPhone,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Банковский счет"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                              MaxLength="25"
                                         Text="{Binding BankAccountNumber,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="ОГРН"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                                MaxLength="11"
                                         Text="{Binding Ogrn,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="ОКТА"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                                MaxLength="11"
                                         Text="{Binding Okta,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="ОКПО"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
+                                                MaxLength="11"
                                         Text="{Binding Okpo,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
                             Content="Добавить продажу товара"
@@ -663,13 +677,15 @@
                                     </ComboBox>
                                     <TextBlock Text="Цена"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                               MaxLength="10"
                                         Text="{Binding Cost,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Гарантия"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding Guarantee,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Скидка"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
-                                        Text="{Binding Discount,UpdateSourceTrigger=PropertyChanged}"/>
+                                        Text="{Binding Discount,UpdateSourceTrigger=PropertyChanged}"
+                                               MaxLength="2"/>
                                     <TextBlock Text="Категория"/>
                                     <ComboBox  Height="25" Width="280"
                             ItemsSource="{Binding Categorie,UpdateSourceTrigger=PropertyChanged}"
@@ -789,6 +805,7 @@
                                         Text="{Binding DescriptionService,UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="Цена за час "/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
+                                             MaxLength="10"
                                         Text="{Binding CostPerHour,UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <Button Style="{StaticResource ButtonStyle1}" 

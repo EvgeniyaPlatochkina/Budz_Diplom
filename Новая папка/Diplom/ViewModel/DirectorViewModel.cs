@@ -82,7 +82,15 @@ namespace Diplom.ViewModel
                     UpdateLists();
             }
         }
-
+        private string _searchEmploeeValue;
+        public string SearchEmploeeValue
+        {
+            get => _searchEmploeeValue; set
+            {
+                if (Set(ref _searchEmploeeValue, value, nameof(SearchEmploeeValue)))
+                    UpdateLists();
+            }
+        }
         private string FirstLetterToUpper(string value)
         {
             var newString = new StringBuilder();
@@ -134,7 +142,7 @@ namespace Diplom.ViewModel
         private void UpdateLists()
         {
             Users = SearchUser(_userService.GetUsers().ToList());
-            Еmployees = _employeesService.GetЕmployees().ToList();
+            Еmployees = SearchЕmployees(_employeesService.GetЕmployees().ToList());
             Reports = _reportService.GetReport().ToList();
         }
         private List<User> SearchUser(List<User> searchUser)
@@ -144,7 +152,13 @@ namespace Diplom.ViewModel
             else
                 return searchUser;
         }
-        
+        private List<Еmployees> SearchЕmployees(List<Еmployees> searchUser)
+        {
+            if (!string.IsNullOrEmpty(SearchEmploeeValue))
+                return searchUser.Where(p => p.LastName.ToLower().Contains(SearchEmploeeValue.ToLower()) || p.FirstName.ToLower().Contains(SearchEmploeeValue.ToLower())).ToList();
+            else
+                return searchUser;
+        }
 
         private bool ClientIsExist() => _userService.GetUsers().Any(c => c.Password == Password && c.Login == Login);
         private bool PasswordAlredyInUse() => _userService.GetUsers().Any(c => c.Password == Password);

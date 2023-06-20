@@ -80,12 +80,16 @@
                                       >
                                             <TextBlock Text="Имя" HorizontalAlignment="Center"/>
                                             <TextBox      Style="{StaticResource TextBox2}"
+                                                            MaxLength="50" 
                                                 Text="{Binding FirstName,UpdateSourceTrigger=PropertyChanged}" />
                                             <TextBlock Text="Фамилия" HorizontalAlignment="Center"/>
-                                            <TextBox      Style="{StaticResource TextBox2}"
+                                            <TextBox   
+                                                MaxLength="50" 
+                                                Style="{StaticResource TextBox2}"
                                                 Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"/>
                                             <TextBlock Text="Отчество" HorizontalAlignment="Center"/>
-                                            <TextBox      Style="{StaticResource TextBox2}"
+                                            <TextBox   
+                                                  MaxLength="50" Style="{StaticResource TextBox2}"
                                                 Text="{Binding MiddleName,UpdateSourceTrigger=PropertyChanged}" />
                                             <TextBlock Text="Логин" HorizontalAlignment="Center"/>
                                             <TextBox  Style="{StaticResource TextBox2}"
@@ -224,12 +228,15 @@
                                       >
                                             <TextBlock Text="Имя" HorizontalAlignment="Center"/>
                                             <TextBox Style="{StaticResource TextBox2}"
+                                                       MaxLength="50" 
                                                 Text="{Binding FirstNameEmp,UpdateSourceTrigger=PropertyChanged}" Width="182"/>
                                             <TextBlock Text="Фамилия" HorizontalAlignment="Center"/>
                                             <TextBox  Style="{StaticResource TextBox2}"
+                                                        MaxLength="50" 
                                                 Text="{Binding LastNameEmpoyees,UpdateSourceTrigger=PropertyChanged}" Width="183"/>
                                             <TextBlock Text="Отчество" HorizontalAlignment="Center"/>
                                             <TextBox Style="{StaticResource TextBox2}"
+                                                       MaxLength="50" 
                                                 Text="{Binding MiddleNameEmp,UpdateSourceTrigger=PropertyChanged}" Width="182"/>
                                         </StackPanel>
                                     </Border>
@@ -305,7 +312,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBox Margin="10 10 10 10"
                                      Style="{StaticResource SearchTextBox}"
-                         Text="{Binding SearchUserValue,UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding SearchEmploeeValue,UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                             </Grid>
                         </Grid>

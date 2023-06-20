@@ -114,7 +114,9 @@ namespace Diplom.ViewModel
                 {
                     _reportService.Delete(SelectedReport);
                     UpdateLists();
+                    SelectedReport = null!;
                 }
+                
             }
             else
                 MessageBox.Show("Выберите пользователя", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -131,6 +133,8 @@ namespace Diplom.ViewModel
                 _reportService.Update(SelectedReport);
                 MessageBox.Show("Данные учётной записи успешно обновлены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 UpdateLists();
+                TitleReport = string.Empty;
+                SelectedReport = null!;
             }
         }
         public void OpenAccountantWindow()
@@ -150,6 +154,7 @@ namespace Diplom.ViewModel
         {
             Reports = new List<Report>(GetReport());
             Users = new List<User>(GetUsers());
+           
         }
     }
 }
