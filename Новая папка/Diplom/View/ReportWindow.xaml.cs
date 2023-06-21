@@ -21,13 +21,18 @@ namespace Diplom.View
     /// <summary>
     /// Логика взаимодействия для ReportWindow.xaml
     /// </summary>
+    /// 
+  
     public partial class ReportWindow : Window
     {
-        private ReportViewModel _reportViewModel;
-        public ReportWindow(Report report, ApplicationDbContext ctx, UserService userService,CategorieService categorieService)
+       
+      private ReportViewModel _reportViewModel;
+        public static ReportWindow Window;
+       public ReportWindow(Report report, ApplicationDbContext ctx, UserService userService,CategorieService categorieService)
         {
             InitializeComponent();
             DataContext = _reportViewModel = new ReportViewModel(ctx, categorieService);
+            Window = this;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -38,6 +43,14 @@ namespace Diplom.View
         private void MinButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void windowFrame_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                ReportWindow.Window.DragMove();
+            }
         }
     }
 }

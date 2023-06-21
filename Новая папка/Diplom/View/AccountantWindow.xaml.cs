@@ -24,12 +24,15 @@ namespace Diplom.View
     public partial class AccountantWindow : Window
     {
         private AccountantViewModel _accountantViewModel;
-       
-        public AccountantWindow(ApplicationDbContext ctx, User user,UserService userService)
+        public static AccountantWindow Window;
+        public bool MainWindowState=false;
+
+        public AccountantWindow(ApplicationDbContext ctx, User user, UserService userService)
         {
             InitializeComponent();
-            
+
             DataContext = _accountantViewModel = new AccountantViewModel(ctx, user);
+            Window = this;
         }
 
         private void PracticesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -56,5 +59,28 @@ namespace Diplom.View
         {
 
         }
+
+            private void windowFrame_MouseDown(object sender, MouseButtonEventArgs e)
+            {
+                if (Mouse.LeftButton == MouseButtonState.Pressed)
+                {
+                    AccountantWindow.Window.DragMove();
+                }
+            }
+
+        private void ExpandButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!MainWindowState)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                MainWindowState = true;
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+                MainWindowState = false;
+            }
+        }
     }
 }
+

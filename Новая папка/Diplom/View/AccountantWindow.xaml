@@ -6,20 +6,22 @@
         xmlns:local="clr-namespace:Diplom.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AccountantWindow" Height="500" Width="800"
+        Title="AccountantWindow" Height="600" Width="1000"
+        ResizeMode="NoResize"
          Icon="{StaticResource Icon}"
           AllowsTransparency="True" 
         FontFamily="Lucida Console"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
        Background="Transparent">
-  
+
     <Border  Width="Auto" Height="Auto" Name="windowFrame"
     Background="{StaticResource BackgroundLight}"
           BorderBrush="#395984"
           BorderThickness="1"
-          CornerRadius="20,20,30,40">
-        <Grid>
+          CornerRadius="20,20,30,40"
+             MouseDown="windowFrame_MouseDown">
+        <Grid >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -33,11 +35,19 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="16*" />
                         <ColumnDefinition Width="3*"/>
+
                     </Grid.ColumnDefinitions>
                     <Button Content="X" Style="{StaticResource ButtonStyle3}" Margin="175,0,7,0"
-                        x:Name="ExitButton" Click="ExitButton_Click" Grid.ColumnSpan="2"/>
+                        x:Name="ExitButton" Click="ExitButton_Click" Grid.ColumnSpan="2" Width="40"
+/>
+                    <Button Content="[]" Style="{StaticResource ButtonStyle3}" 
+                        x:Name="ExpandButton" Width="40" Margin="63,0,89,0"
+                            Click="ExpandButton_Click"
+/>
+
                     <Button Grid.Column="0" Content="_" Style="{StaticResource ButtonStyle3}" Margin="120,0,22,0"
-                        x:Name="MinButton" Click="MinButton_Click"/>
+                        x:Name="MinButton" Click="MinButton_Click"
+                           Width="40"/>
                 </Grid>
                 <ListView Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding Reports,UpdateSourceTrigger=PropertyChanged}"
@@ -100,7 +110,7 @@
                     <Border Grid.Row="1"
                         Margin="3"
                             Background="{StaticResource BackgroundDark}"
-                            CornerRadius="50">
+                            CornerRadius="35">
                         <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
@@ -109,9 +119,9 @@
                             <TextBox x:Name="textBox"
                                 TextChanged="TextBox_TextChanged"
                                 Style="{StaticResource TextBox2}"
-                                Text="{Binding TitleReport, UpdateSourceTrigger=PropertyChanged}" Width="198"/>
+                                Text="{Binding TitleReport, UpdateSourceTrigger=PropertyChanged}" Width="256"/>
                             <TextBlock Text="Дата создания" Foreground="{StaticResource AccentColor}"/>
-                           
+
                             <DatePicker
                                 SelectedDate="{Binding DateOfCreatingReport, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="0,0,0,5"/>
@@ -136,10 +146,12 @@
                     </Border>
                     <Border 
                         Grid.Row="2"
-                        Margin="38,38,40,40"
+                        Margin="38,38,40,114"
                             Background="{StaticResource BackgroundDark}"
-                            CornerRadius="50">
-                        <Button Style="{StaticResource ButtonStyle1}" Content="Выйти"  Margin="13,10,14,10" Click="Button_Click"/>
+                            CornerRadius="35"
+                        Height="75"
+                        Width="200">
+                        <Button Style="{StaticResource ButtonStyle1}" Content="Выйти"  Margin="13,10,10,10" Click="Button_Click"/>
                     </Border>
                 </Grid>
 

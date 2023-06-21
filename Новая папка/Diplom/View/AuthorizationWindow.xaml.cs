@@ -21,10 +21,12 @@ namespace Diplom.View
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
+        public static AuthorizationWindow Window;
         public AuthorizationWindow()
         {
             InitializeComponent();
             DataContext = new AuthorizationViewModel(this);
+            Window = this;
         }
 
         private void MinButton_Click(object sender, RoutedEventArgs e)
@@ -35,6 +37,14 @@ namespace Diplom.View
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void windowFrame_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                AuthorizationWindow.Window.DragMove();
+            }
         }
     }
 }

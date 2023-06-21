@@ -24,11 +24,12 @@ namespace Diplom.View
     public partial class DirectorWindow : Window
     {
         private DirectorViewModel _directorView;
-      
+        public static DirectorWindow Window;
         public DirectorWindow(ApplicationDbContext ctx, User user)
         {
             InitializeComponent();
             DataContext = _directorView = new DirectorViewModel(ctx,user);
+            Window = this;
         }
 
        
@@ -43,7 +44,15 @@ namespace Diplom.View
             this.WindowState = WindowState.Minimized;
         }
 
-       
+        private void windowFrame_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                DirectorWindow.Window.DragMove();
+            }
+        }
+
+
 
         //private void MinButton_Click(object sender, RoutedEventArgs e)
         //{

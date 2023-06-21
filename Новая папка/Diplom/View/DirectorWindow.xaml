@@ -17,7 +17,8 @@
     Background="{StaticResource BackgroundLight}"
           BorderBrush="#395984"
           BorderThickness="1"
-          CornerRadius="20,20,30,40">
+          CornerRadius="20,20,30,40"
+             MouseDown="windowFrame_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>

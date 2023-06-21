@@ -7,19 +7,20 @@
         xmlns:vm="clr-namespace:Diplom.ViewModel"
         mc:Ignorable="d"
         Title="Авторизация" Height="500" Width="400"
-        ResizeMode="CanResizeWithGrip"
+        
         WindowStartupLocation="CenterScreen"
         Icon="{StaticResource Icon}"
         WindowStyle="None"
         AllowsTransparency="True" 
         Background="Transparent"
-       
+           ResizeMode="NoResize"
          FontFamily="Lucida Console">
     <Border Width="Auto" Height="Auto" Name="windowFrame"
     Background="{StaticResource BackgroundLight}"
           BorderBrush="#395984"
           BorderThickness="1"
-          CornerRadius="20,20,30,40">
+          CornerRadius="20,20,30,40"
+            MouseDown="windowFrame_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
