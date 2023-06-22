@@ -25,6 +25,7 @@ namespace Diplom.View
     {
         private DirectorViewModel _directorView;
         public static DirectorWindow Window;
+        public bool MainWindowState = true;
         public DirectorWindow(ApplicationDbContext ctx, User user)
         {
             InitializeComponent();
@@ -49,6 +50,20 @@ namespace Diplom.View
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 DirectorWindow.Window.DragMove();
+            }
+        }
+
+        private void ExpandButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!MainWindowState)
+            {
+                Window.WindowState = WindowState.Maximized;
+                MainWindowState = true;
+            }
+            else
+            {
+                Window.WindowState = WindowState.Normal;
+                MainWindowState = false;
             }
         }
 

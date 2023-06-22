@@ -26,8 +26,9 @@ namespace Diplom.View
     public partial class ReportWindow : Window
     {
        
-      private ReportViewModel _reportViewModel;
+        private ReportViewModel _reportViewModel;
         public static ReportWindow Window;
+        public bool MainWindowState = true;
        public ReportWindow(Report report, ApplicationDbContext ctx, UserService userService,CategorieService categorieService)
         {
             InitializeComponent();
@@ -50,6 +51,20 @@ namespace Diplom.View
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 ReportWindow.Window.DragMove();
+            }
+        }
+
+        private void ExpandButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!MainWindowState)
+            {
+                Window.WindowState = WindowState.Maximized;
+                MainWindowState = true;
+            }
+            else
+            {
+                Window.WindowState = WindowState.Normal;
+                MainWindowState = false;
             }
         }
     }

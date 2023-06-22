@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diplom.View"
         mc:Ignorable="d"
-        Title="ReportWindow" Height="670" Width="1050"
+        Title="ReportWindow" Height="700" Width="1300"
          Icon="{StaticResource Icon}"
          AllowsTransparency="True" 
         WindowStyle="None"
@@ -27,13 +27,19 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="322*" />
-                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="71"/>
+                    <ColumnDefinition Width="57"/>
+                    <ColumnDefinition Width="62"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Content="X" Style="{StaticResource ButtonStyle3}" Margin="2,-3,6,-3"
+                <Button Grid.Column="3" Content="X" Style="{StaticResource ButtonStyle3}" Margin="0,-3,10,-3"
                         x:Name="ExitButton" Click="ExitButton_Click"/>
-                <Button Content="_" Style="{StaticResource ButtonStyle3}" Margin="908,0,3,0"
-                        x:Name="MinButton" Click="MinButton_Click"/>
+                <Button Grid.Column="2" Content="□" Style="{StaticResource ButtonStyle3}" 
+                        x:Name="ExpandButton" Margin="5,0,2,0"
+                            Click="ExpandButton_Click"
+/>
+                <Button Content="_" Style="{StaticResource ButtonStyle3}" Margin="20,0,2,0"
+                        x:Name="MinButton" Click="MinButton_Click" Grid.Column="1"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -87,7 +93,7 @@
 
                                 </Grid>
                             </Border>
-                            <ListView Grid.Column="0" Grid.Row="1"
+                            <ListView Grid.Column="0" Grid.Row="1" Margin="25 0 0 0"
                           ItemsSource="{Binding SaleProducts,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedSaleProduct,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
@@ -179,7 +185,8 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,82">
+                            CornerRadius="30" Margin="0,0,0,82"
+                                    Width="295">
                                 <StackPanel 
                                     
                             VerticalAlignment="Center"
@@ -187,9 +194,10 @@
                                     <TextBlock Text="Артикул"/>
                                     <TextBox  Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding ArticleProduct,UpdateSourceTrigger=PropertyChanged}"
-                                                MaxLength="15" />
+                                                MaxLength="15"  />
                                     <TextBlock Text="Дата продажи"/>
-                                    <DatePicker SelectedDate="{Binding DateOfSaleProduct, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <DatePicker SelectedDate="{Binding DateOfSaleProduct, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="275"/>
                                     <TextBlock Text="Организация"/>
                                     <ComboBox Height="25"
                                     Width="280"
@@ -260,7 +268,7 @@
                                 <TextBox  Style="{StaticResource SearchTextBox}"
                             Text="{Binding SearchServiceValue ,UpdateSourceTrigger=PropertyChanged}" Margin="5" Grid.Column="0" Width="180"/>
                             </Grid>
-                            <ListView Grid.Column="0" Grid.Row="1"
+                            <ListView Grid.Column="0" Grid.Row="1" Margin="25 0 0 0"
                           ItemsSource="{Binding SaleService,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedSaleService,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
@@ -339,7 +347,8 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,90">
+                            CornerRadius="30" Margin="0,0,0,90"
+                                    Width="295">
                                 <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
@@ -397,20 +406,19 @@
                     <TabItem Header="Организации">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width=".4*"/>
+                                <ColumnDefinition Width="925*"/>
+                                <ColumnDefinition Width="369*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <ListView Grid.Column="0" Grid.Row="1"
+                            <ListView Grid.Column="0" Grid.Row="1" Margin="25 0 0 0"
                           ItemsSource="{Binding Organizations,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedOrganization,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          HorizontalAlignment="Stretch"
                           Background="Transparent" >
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
@@ -448,7 +456,7 @@
                                                       />
                                                                 <TextBlock Text="{Binding Owner , StringFormat=ФИЗ-Лицо: {0}}"
                                                        />
-                                                                <TextBlock Text="{Binding MailingAddress, StringFormat=Майл-Адресс: {0}}"
+                                                                <TextBlock TextWrapping="Wrap" Text="{Binding MailingAddress, StringFormat=Майл-Адресс: {0}}"
                                                        />
                                                                 <TextBlock Text="{Binding NumberPhone, StringFormat=Номер-Организации: {0}}"
                                                       />
@@ -488,7 +496,8 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,10">
+                            CornerRadius="30" Margin="34,0,34,10"
+                                    Width="295">
                                 <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
@@ -553,20 +562,19 @@
                     <TabItem Header="Товары">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="935*"/>
+                                <ColumnDefinition Width="359*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <ListView Grid.Column="0" Grid.Row="1"
+                            <ListView Grid.Column="0" Grid.Row="1" Margin="25 0 0 0"
                           ItemsSource="{Binding Products,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelecteProduct,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          HorizontalAlignment="Stretch"
                           Background="Transparent" >
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
@@ -659,7 +667,8 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,0,0,74">
+                            CornerRadius="30" Margin="36,0,28,74"
+                                    Width="295">
                                 <StackPanel 
                             VerticalAlignment="Center"
                             Margin="10">
@@ -718,7 +727,7 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <ListView Grid.Column="0" Grid.Row="1"
+                            <ListView Grid.Column="0" Grid.Row="1" Margin="25 0 0 0"
                           ItemsSource="{Binding Services,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedService,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
@@ -794,7 +803,8 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,32,0,189">
+                            CornerRadius="30" Margin="0,32,0,189"
+                                    Width="295">
                                 <StackPanel
                             VerticalAlignment="Center"
                             Margin="10,0,10,0" Height="314">
@@ -835,7 +845,7 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <ListView Grid.Column="0" Grid.Row="1"
+                            <ListView Grid.Column="0" Grid.Row="1" Margin="25 0 0 0"
                           ItemsSource="{Binding Categorie,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedCategorieTitle,UpdateSourceTrigger=PropertyChanged}"
                           BorderThickness="0"
@@ -897,7 +907,8 @@
                             </ListView>
                             <Border Grid.Column="1" Grid.Row="1"
                                Background="{StaticResource BackgroundDark}"
-                            CornerRadius="30" Margin="0,173,0,195">
+                            CornerRadius="30" Margin="0,173,0,195"
+                                    Width="295">
                                 <StackPanel Grid.Column="1" Grid.Row="1"
                             VerticalAlignment="Center"
                             Margin="10">
