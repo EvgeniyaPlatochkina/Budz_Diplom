@@ -385,7 +385,7 @@
                                   SelectedItem="{Binding SelectedEmployeesService,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="FullName"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
-                            Content="Добавить продажу товара"
+                            Content="Добавить продажу услуги"
                           Command="{Binding AddSaleServicebutton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,10,0,4"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
@@ -542,7 +542,7 @@
                                                 MaxLength="11"
                                         Text="{Binding Okpo,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
-                            Content="Добавить продажу товара"
+                            Content="Добавить Организацию"
                            Command="{Binding AddOrganizationsbutton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,10,0,4"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
@@ -695,14 +695,14 @@
                                     <TextBlock Text="Скидка"/>
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding Discount,UpdateSourceTrigger=PropertyChanged}"
-                                               MaxLength="2"/>
+                                               MaxLength="5"/>
                                     <TextBlock Text="Категория"/>
                                     <ComboBox  Height="25" Width="280"
                             ItemsSource="{Binding Categorie,UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedCategories,UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
-                            Content="Добавить товара"
+                            Content="Добавить товар"
                             Command="{Binding AddProductbutton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,10,0,4"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
@@ -916,7 +916,7 @@
                                     <TextBox Style="{StaticResource TextBox2}" Width="275"
                                         Text="{Binding CategorieTitle,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
-                            Content="Добавить услугу"
+                            Content="Добавить категорию"
                            Command="{Binding AddCategoriebutton,UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,10,0,4"/>
                                     <Button Style="{StaticResource ButtonStyle1}" 
